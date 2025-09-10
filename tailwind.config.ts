@@ -22,6 +22,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -47,6 +48,17 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        notebook: {
+          DEFAULT: "hsl(var(--notebook))",
+          foreground: "hsl(var(--notebook-foreground))",
+          lines: "hsl(var(--notebook-lines))",
+        },
+        neon: {
+          red: "hsl(var(--neon-red))",
+          orange: "hsl(var(--neon-orange))",
+        },
+        paper: "hsl(var(--paper-white))",
+        charcoal: "hsl(var(--charcoal))",
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
@@ -57,6 +69,21 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+      },
+      fontFamily: {
+        'handwritten': ['var(--font-handwritten)'],
+        'body': ['var(--font-body)'],
+      },
+      backgroundImage: {
+        'gradient-neon': 'var(--gradient-neon)',
+        'gradient-paper': 'var(--gradient-paper)',
+        'gradient-dark': 'var(--gradient-dark)',
+      },
+      boxShadow: {
+        'glow-red': 'var(--glow-red)',
+        'glow-orange': 'var(--glow-orange)',
+        'notebook': 'var(--shadow-notebook)',
+        'card-dark': 'var(--shadow-card)',
       },
       borderRadius: {
         lg: "var(--radius)",
