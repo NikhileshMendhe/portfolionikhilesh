@@ -34,15 +34,15 @@ const HeroSection = () => {
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
         <div className="float">
           <h1 className="handwritten-bold text-6xl md:text-8xl mb-6 neon-text leading-tight">
-            Alex Chen
+            Nikhilesh Mendhe
           </h1>
           <div className="h-1 w-32 bg-gradient-neon mx-auto mb-8 neon-glow rounded-full" />
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 font-light tracking-wide">
-            Concept Artist & Visual Storyteller
+            Computer Science Engineer | Full-Stack Developer | Innovator
           </p>
           <p className="text-lg text-foreground/80 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Bringing imagination to life through digital art, character design, 
-            and environmental storytelling for games and animation.
+            Crafting digital solutions through code, innovation, and creative problem-solving. 
+            From hackathons to full-stack development, bringing ideas to life.
           </p>
         </div>
         
@@ -51,17 +51,17 @@ const HeroSection = () => {
             variant="default" 
             size="lg"
             className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg neon-glow transition-all duration-300 hover:scale-105"
-            onClick={() => document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            View Portfolio
+            Explore Projects
           </Button>
           <Button 
             variant="outline" 
             size="lg"
             className="border-primary/50 text-primary hover:bg-primary/10 px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
-            onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => window.open('#', '_blank')}
           >
-            Get In Touch
+            View Resume
           </Button>
         </div>
       </div>
