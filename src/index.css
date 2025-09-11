@@ -333,6 +333,19 @@
     }
   }
 
+  /* 3D flip card utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-style-preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+  }
+
   @keyframes sketch-draw {
     0% { stroke-dashoffset: 1000; }
     100% { stroke-dashoffset: 0; }
