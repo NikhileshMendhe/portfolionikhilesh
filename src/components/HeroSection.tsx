@@ -1,42 +1,25 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import heroBackground from '@/assets/hero-background.jpg';
-// Image will be placed in public folder
+import { useTheme } from 'next-themes';
 
 const HeroSection = () => {
   const [scrollY, setScrollY] = useState(0);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  if (!mounted) return null;
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Futuristic Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/90 to-card opacity-95" />
-      
-      {/* Animated Grid */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-grid-pattern animate-pulse" />
-      </div>
-      
-      {/* Floating particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(15)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary rounded-full animate-float"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 4}s`,
-              animationDuration: `${4 + Math.random() * 2}s`
-            }}
-          />
-        ))}
-      </div>
+      {/* Subtle Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90" />
       
       {/* Main content container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8">
@@ -78,48 +61,17 @@ const HeroSection = () => {
             </div>
           </div>
           
-          {/* Right side - Hero Image with Holographic Effects */}
+          {/* Right side - Hero Image */}
           <div className="relative animate-slide-in-right">
-            {/* Holographic UI Elements */}
-            <div className="absolute -inset-20 opacity-60">
-              {/* Floating panels */}
-              <div className="absolute top-10 -left-10 w-32 h-20 border border-accent/50 bg-accent/5 rounded-lg backdrop-blur-sm animate-float-slow">
-                <div className="p-2 space-y-1">
-                  <div className="h-2 bg-accent/50 rounded w-3/4" />
-                  <div className="h-1 bg-accent/30 rounded w-1/2" />
-                  <div className="h-1 bg-accent/30 rounded w-2/3" />
-                </div>
-              </div>
-              
-              <div className="absolute top-40 -right-16 w-28 h-16 border border-primary/50 bg-primary/5 rounded-lg backdrop-blur-sm animate-float-slow" style={{ animationDelay: '1s' }}>
-                <div className="p-2 space-y-1">
-                  <div className="h-2 bg-primary/50 rounded w-full" />
-                  <div className="h-1 bg-primary/30 rounded w-3/4" />
-                </div>
-              </div>
-              
-              <div className="absolute bottom-20 -left-12 w-24 h-12 border border-accent/50 bg-accent/5 rounded-lg backdrop-blur-sm animate-float-slow" style={{ animationDelay: '2s' }}>
-                <div className="p-1">
-                  <div className="h-1 bg-accent/50 rounded w-full mb-1" />
-                  <div className="h-1 bg-accent/30 rounded w-2/3" />
-                </div>
-              </div>
-              
-              {/* Circuit lines */}
-              <div className="absolute top-32 left-0 w-40 h-0.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent animate-pulse" />
-              <div className="absolute bottom-32 right-0 w-32 h-0.5 bg-gradient-to-l from-transparent via-accent/50 to-transparent animate-pulse" style={{ animationDelay: '1.5s' }} />
-            </div>
-            
             {/* Main hero image */}
             <div className="relative group">
-              <div className="absolute -inset-4 bg-gradient-to-r from-primary/20 to-accent/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500 animate-pulse" />
               <div className="relative">
                 <img 
-                  src="/lovable-uploads/199e17c9-2379-4f28-9db7-69c3751e2ddb.png" 
+                  src={theme === 'dark' ? "/lovable-uploads/199e17c9-2379-4f28-9db7-69c3751e2ddb.png" : "/lovable-uploads/04655bac-7350-4a99-a179-c9dcd01022e7.png"}
                   alt="Nikhilesh Mendhe - Full Stack Developer"
-                  className="w-full max-w-lg mx-auto rounded-2xl shadow-2xl transition-all duration-500 group-hover:scale-105"
+                  className="w-full max-w-md mx-auto rounded-2xl shadow-2xl transition-all duration-500 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 rounded-2xl border-2 border-primary/20 group-hover:border-primary/40 transition-all duration-500" />
+                <div className="absolute inset-0 rounded-2xl border-2 border-primary/30 group-hover:border-primary/50 transition-all duration-500" />
               </div>
             </div>
           </div>

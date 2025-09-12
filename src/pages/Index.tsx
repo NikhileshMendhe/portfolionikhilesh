@@ -3,6 +3,7 @@ import AboutSection from '@/components/AboutSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import ContactSection from '@/components/ContactSection';
 import ThemeToggle from '@/components/ThemeToggle';
+import MovingBackground from '@/components/MovingBackground';
 import EducationTimeline from '@/components/sections/EducationTimeline';
 import SkillsSection from '@/components/sections/SkillsSection';
 import StatsSection from '@/components/sections/StatsSection';
@@ -18,6 +19,7 @@ import HobbiesSection from '@/components/sections/HobbiesSection';
 const Index = () => {
   return (
     <div className="min-h-screen bg-background transition-colors duration-500">
+      <MovingBackground />
       <ThemeToggle />
       <HeroSection />
       <AboutSection />
