@@ -13,7 +13,7 @@ const ThemeToggle = () => {
   if (!mounted) return null;
 
   const toggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    setTheme(theme === 'dark' ? 'navy' : 'dark');
   };
 
   return (
@@ -25,7 +25,7 @@ const ThemeToggle = () => {
       <div className="relative w-6 h-6">
         <Sun 
           className={`absolute inset-0 w-6 h-6 text-primary transition-all duration-500 ${
-            theme === 'light' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-75'
+            theme === 'navy' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-75'
           }`}
         />
         <Moon 

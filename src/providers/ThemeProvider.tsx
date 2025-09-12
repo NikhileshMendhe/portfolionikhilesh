@@ -8,6 +8,7 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
       defaultTheme="dark"
       enableSystem={false}
       storageKey="portfolio-theme"
+      themes={["dark", "navy"]}
       {...props}
     >
       {children}
