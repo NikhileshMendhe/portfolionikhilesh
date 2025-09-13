@@ -17,7 +17,7 @@ const HeroSection = () => {
   if (!mounted) return null;
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24">
       {/* Subtle Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-background/95 to-background/90" />
       

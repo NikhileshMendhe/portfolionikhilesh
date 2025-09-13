@@ -67,8 +67,9 @@ const Navbar = () => {
   if (!mounted) return null;
 
   return (
-    <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
-      <div className="backdrop-blur-md bg-card/90 border border-border/50 rounded-full px-6 py-3 shadow-2xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border/50">
+      <div className="max-w-7xl mx-auto px-6 py-4">
+        <div className="backdrop-blur-md bg-card/90 border border-border/50 rounded-full px-6 py-3 shadow-2xl max-w-fit mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-1">
             {sections.map((section) => (
@@ -123,6 +124,7 @@ const Navbar = () => {
             </div>
           </button>
         </div>
+      </div>
       </div>
     </nav>
   );
