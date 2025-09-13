@@ -78,7 +78,7 @@ const OpenSourceSection = () => {
   }, []);
 
   return (
-    <section className="py-20 bg-background relative">
+    <section id="opensource" className="py-20 bg-background relative">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold handwritten-bold mb-4 neon-text">

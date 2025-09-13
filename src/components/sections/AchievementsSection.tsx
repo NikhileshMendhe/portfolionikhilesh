@@ -38,7 +38,7 @@ const AchievementsSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-background relative overflow-hidden">
+    <section id="achievements" className="py-20 bg-background relative overflow-hidden">
       {/* Floating confetti particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(20)].map((_, i) => (
@@ -65,48 +65,38 @@ const AchievementsSection = () => {
           </p>
         </div>
 
-        {/* Horizontal scrolling achievements */}
-        <div className="overflow-x-auto pb-8">
-          <div className="flex space-x-8 min-w-max px-8">
-            {achievements.map((achievement, index) => {
-              const IconComponent = achievement.icon;
-              return (
-                <Card
-                  key={index}
-                  className={`min-w-[350px] bg-card/50 border-border hover:border-primary/50 transition-all duration-500 transform hover:scale-105 hover:rotate-1 animate-bounce`}
-                  style={{ animationDelay: `${index * 0.2}s`, animationDuration: '1s', animationFillMode: 'both' }}
-                >
-                  <CardContent className="p-8 text-center">
-                    <div className={`inline-flex items-center justify-center w-20 h-20 rounded-full ${achievement.bgColor} mb-6 pulse-glow`}>
-                      <IconComponent className={`w-10 h-10 ${achievement.color}`} />
-                    </div>
-                    <h3 className="text-2xl font-bold handwritten mb-2 neon-text">
-                      {achievement.title}
-                    </h3>
-                    <p className="text-sm text-accent uppercase tracking-wider mb-3">
-                      {achievement.category}
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {achievement.description}
-                    </p>
-                  </CardContent>
-                </Card>
-              );
-            })}
-          </div>
+        {/* Glowing divider line */}
+        <div className="flex justify-center mb-12">
+          <div className="w-32 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full neon-glow" />
         </div>
 
-        {/* Scroll indicator */}
-        <div className="flex justify-center mt-8">
-          <div className="flex space-x-2">
-            {achievements.map((_, index) => (
-              <div
+        {/* Grid layout achievements */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {achievements.map((achievement, index) => {
+            const IconComponent = achievement.icon;
+            return (
+              <Card
                 key={index}
-                className="w-2 h-2 rounded-full bg-primary/30 animate-pulse"
-                style={{ animationDelay: `${index * 0.5}s` }}
-              />
-            ))}
-          </div>
+                className="bg-card/50 border-border hover:border-primary/50 transition-all duration-500 transform hover:scale-105 animate-fade-in group"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <CardContent className="p-6 text-center">
+                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${achievement.bgColor} mb-4 transition-all duration-300 group-hover:scale-110`}>
+                    <IconComponent className={`w-8 h-8 ${achievement.color}`} />
+                  </div>
+                  <h3 className="text-xl font-bold handwritten mb-2 neon-text">
+                    {achievement.title}
+                  </h3>
+                  <p className="text-xs text-accent uppercase tracking-wider mb-2">
+                    {achievement.category}
+                  </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    {achievement.description}
+                  </p>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
       </div>
     </section>

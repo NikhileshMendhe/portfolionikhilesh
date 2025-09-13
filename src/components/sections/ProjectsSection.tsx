@@ -193,7 +193,7 @@ const ProjectsSection = () => {
   };
 
   return (
-    <section ref={sectionRef} className="min-h-screen py-20 px-6 relative overflow-hidden">
+    <section id="projects" ref={sectionRef} className="min-h-screen py-20 px-6 relative overflow-hidden">
       {/* Background Animation */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-neon-red/5 rounded-full blur-3xl animate-pulse"></div>

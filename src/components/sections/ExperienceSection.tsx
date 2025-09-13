@@ -37,7 +37,7 @@ const ExperienceSection = () => {
   ];
 
   return (
-    <section className="py-20 bg-muted/30 relative">
+    <section id="experience" className="py-20 bg-muted/30 relative">
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold handwritten-bold mb-4 neon-text">
