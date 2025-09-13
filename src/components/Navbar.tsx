@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
+import { Sun, Moon } from 'lucide-react';
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [mounted, setMounted] = useState(false);
-  const { theme } = useTheme();
+  const { theme, setTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
@@ -59,42 +60,68 @@ const Navbar = () => {
     }
   };
 
+  const toggleTheme = () => {
+    setTheme(theme === 'dark' ? 'navy' : 'dark');
+  };
+
   if (!mounted) return null;
 
   return (
     <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
       <div className="backdrop-blur-md bg-card/90 border border-border/50 rounded-full px-6 py-3 shadow-2xl">
-        <div className="flex items-center space-x-1">
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => scrollToSection(section.id)}
-              className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 hover:text-primary group ${
-                activeSection === section.id
-                  ? 'text-primary'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              <span className="relative z-10">{section.label}</span>
-              
-              {/* Active indicator */}
-              {activeSection === section.id && (
-                <div className="absolute inset-0 bg-primary/10 rounded-full animate-fade-in" />
-              )}
-              
-              {/* Glow effect on hover */}
-              <div className={`absolute inset-0 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 ${
-                theme === 'dark' ? 'bg-red-500/10' : 'bg-cyan-500/10'
-              }`} />
-              
-              {/* Active underline glow */}
-              {activeSection === section.id && (
-                <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 rounded-full animate-fade-in ${
-                  theme === 'dark' ? 'bg-red-500 shadow-[0_0_8px_#ef4444]' : 'bg-cyan-500 shadow-[0_0_8px_#06b6d4]'
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-1">
+            {sections.map((section) => (
+              <button
+                key={section.id}
+                onClick={() => scrollToSection(section.id)}
+                className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 hover:text-primary group ${
+                  activeSection === section.id
+                    ? 'text-primary'
+                    : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                <span className="relative z-10">{section.label}</span>
+                
+                {/* Active indicator */}
+                {activeSection === section.id && (
+                  <div className="absolute inset-0 bg-primary/10 rounded-full animate-fade-in" />
+                )}
+                
+                {/* Glow effect on hover */}
+                <div className={`absolute inset-0 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 ${
+                  theme === 'dark' ? 'bg-red-500/10' : 'bg-cyan-500/10'
                 }`} />
-              )}
-            </button>
-          ))}
+                
+                {/* Active underline glow */}
+                {activeSection === section.id && (
+                  <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 rounded-full animate-fade-in ${
+                    theme === 'dark' ? 'bg-red-500 shadow-[0_0_8px_#ef4444]' : 'bg-cyan-500 shadow-[0_0_8px_#06b6d4]'
+                  }`} />
+                )}
+              </button>
+            ))}
+          </div>
+          
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="ml-4 p-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/90 transition-all duration-300 neon-glow group"
+            aria-label="Toggle theme"
+          >
+            <div className="relative w-5 h-5">
+              <Sun 
+                className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
+                  theme === 'navy' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-75'
+                }`}
+              />
+              <Moon 
+                className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
+                  theme === 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-75'
+                }`}
+              />
+            </div>
+          </button>
         </div>
       </div>
     </nav>

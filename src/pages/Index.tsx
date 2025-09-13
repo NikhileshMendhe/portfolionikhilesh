@@ -2,7 +2,7 @@ import HeroSection from '@/components/HeroSection';
 import AboutSection from '@/components/AboutSection';
 import PortfolioSection from '@/components/PortfolioSection';
 import ContactSection from '@/components/ContactSection';
-import ThemeToggle from '@/components/ThemeToggle';
+
 import MovingBackground from '@/components/MovingBackground';
 import Navbar from '@/components/Navbar';
 import EducationTimeline from '@/components/sections/EducationTimeline';
@@ -22,7 +22,6 @@ const Index = () => {
     <div className="min-h-screen bg-background transition-colors duration-500">
       <MovingBackground />
       <Navbar />
-      <ThemeToggle />
       <HeroSection />
       <AboutSection />
       <EducationTimeline />

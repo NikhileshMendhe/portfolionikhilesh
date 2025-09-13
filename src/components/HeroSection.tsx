@@ -67,9 +67,9 @@ const HeroSection = () => {
             <div className="relative group">
               <div className="relative">
                 <img 
-                  src={theme === 'dark' ? "/lovable-uploads/199e17c9-2379-4f28-9db7-69c3751e2ddb.png" : "/lovable-uploads/04655bac-7350-4a99-a179-c9dcd01022e7.png"}
+                  src={theme === 'dark' ? "/red-cyber-portrait.png" : "/blue-cyber-portrait.png"}
                   alt="Nikhilesh Mendhe - Full Stack Developer"
-                  className="w-full max-w-sm mx-auto rounded-2xl shadow-2xl transition-all duration-500 group-hover:scale-105"
+                  className="w-full max-w-md mx-auto rounded-2xl shadow-2xl transition-all duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 rounded-2xl border-2 border-primary/30 group-hover:border-primary/50 transition-all duration-500" />
               </div>
