@@ -53,10 +53,17 @@ const HeroSection = () => {
               <Button 
                 variant="outline" 
                 size="lg"
-                className="border-primary/50 text-primary hover:bg-primary/10 px-8 py-4 text-lg transition-all duration-300 hover:scale-105"
-                onClick={() => window.open('#', '_blank')}
+                className="border-primary/50 text-primary hover:bg-primary/10 px-8 py-4 text-lg transition-all duration-300 hover:scale-105 neon-glow"
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/NIKHILESH_MENDHE_RESUME.pdf';
+                  link.download = 'NIKHILESH_MENDHE_RESUME.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
               >
-                View Resume
+                Download Resume
               </Button>
             </div>
           </div>
