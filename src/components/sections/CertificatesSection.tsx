@@ -73,17 +73,17 @@ const CertificatesSection = () => {
 
   return (
     <section className="py-20 bg-muted/20 relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold handwritten-bold mb-4 neon-text">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold handwritten-bold mb-4 neon-text">
             🏅 Certificates & Awards
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
             Professional certifications, course completions, and recognition achievements
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
           {certificates.map((cert, index) => (
             <Card
               key={index}
@@ -91,15 +91,15 @@ const CertificatesSection = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => setSelectedCert(cert)}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <div className="text-center">
                   {/* Certificate icon/image */}
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-4 group-hover:bg-primary/20 transition-colors">
-                    <span className="text-3xl">{cert.image}</span>
+                  <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-primary/10 mb-3 sm:mb-4 group-hover:bg-primary/20 transition-colors">
+                    <span className="text-2xl sm:text-3xl">{cert.image}</span>
                   </div>
 
                   {/* Certificate title */}
-                  <h3 className="text-xl font-bold handwritten mb-2 neon-text group-hover:text-primary transition-colors">
+                  <h3 className="text-lg sm:text-xl font-bold handwritten mb-2 neon-text group-hover:text-primary transition-colors">
                     {cert.title}
                   </h3>
 
@@ -109,7 +109,7 @@ const CertificatesSection = () => {
                   </p>
 
                   {/* Date and type */}
-                  <div className="flex items-center justify-center space-x-4 mb-4 text-sm text-muted-foreground">
+                  <div className="flex items-center justify-center space-x-4 mb-3 sm:mb-4 text-xs sm:text-sm text-muted-foreground">
                     <div className="flex items-center">
                       <Calendar className="w-3 h-3 mr-1" />
                       {cert.date}

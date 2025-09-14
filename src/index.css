@@ -380,6 +380,40 @@
     }
   }
 
+  /* Mobile Responsive Utilities */
+  @media (max-width: 768px) {
+    .handwritten-bold {
+      font-size: clamp(2rem, 8vw, 4rem) !important;
+    }
+    
+    .neon-text {
+      text-shadow: 0 0 5px currentColor !important;
+    }
+    
+    .neon-glow {
+      box-shadow: 0 0 10px currentColor !important;
+    }
+    
+    /* Reduce parallax effects on mobile */
+    .parallax {
+      transform: none !important;
+    }
+    
+    /* Mobile button sizing */
+    .btn-mobile {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Touch-friendly sizing */
+  @media (hover: none) {
+    button, a {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
   /* Grid background pattern */
   .bg-grid-pattern {
     background-image: 

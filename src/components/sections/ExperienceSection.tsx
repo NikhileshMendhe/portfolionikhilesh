@@ -38,17 +38,17 @@ const ExperienceSection = () => {
 
   return (
     <section id="experience" className="py-20 bg-muted/30 relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold handwritten-bold mb-4 neon-text">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold handwritten-bold mb-4 neon-text">
             💼 Work Experience
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
             Professional journey building real-world applications and gaining industry experience
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {experiences.map((exp, index) => (
             <div
               key={index}
@@ -57,18 +57,18 @@ const ExperienceSection = () => {
                 animation: `slide-in-${index % 2 === 0 ? 'left' : 'right'} 0.8s ease-out ${index * 0.3}s both`
               }}
             >
-              <Card className="h-full bg-card/50 border-border hover:border-primary/50 transition-all duration-700 transform-style-preserve-3d group-hover:rotate-y-12 cursor-pointer">
-                <CardContent className="p-8">
+              <Card className="h-full bg-card/50 border-border hover:border-primary/50 transition-all duration-700 transform-style-preserve-3d sm:group-hover:rotate-y-12 cursor-pointer">
+                <CardContent className="p-4 sm:p-6 lg:p-8">
                   {/* Front side */}
                   <div className="group-hover:opacity-0 transition-opacity duration-300">
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex items-center space-x-4">
-                        <div className="text-4xl">{exp.logo}</div>
+                    <div className="flex items-start justify-between mb-4 sm:mb-6 flex-col sm:flex-row gap-3 sm:gap-0">
+                      <div className="flex items-center space-x-3 sm:space-x-4">
+                        <div className="text-2xl sm:text-3xl lg:text-4xl">{exp.logo}</div>
                         <div>
-                          <h3 className="text-2xl font-bold handwritten neon-text">
+                          <h3 className="text-lg sm:text-xl lg:text-2xl font-bold handwritten neon-text">
                             {exp.company}
                           </h3>
-                          <p className="text-lg text-accent font-semibold">
+                          <p className="text-sm sm:text-base lg:text-lg text-accent font-semibold">
                             {exp.role}
                           </p>
                         </div>
@@ -78,13 +78,13 @@ const ExperienceSection = () => {
                       </Badge>
                     </div>
 
-                    <div className="space-y-3 mb-6">
-                      <div className="flex items-center text-muted-foreground">
-                        <Calendar className="w-4 h-4 mr-2" />
+                    <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                      <div className="flex items-center text-muted-foreground text-sm sm:text-base">
+                        <Calendar className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                         {exp.duration}
                       </div>
-                      <div className="flex items-center text-muted-foreground">
-                        <MapPin className="w-4 h-4 mr-2" />
+                      <div className="flex items-center text-muted-foreground text-sm sm:text-base">
+                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4 mr-2" />
                         {exp.location}
                       </div>
                     </div>

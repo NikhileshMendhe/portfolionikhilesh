@@ -53,15 +53,15 @@ const ContactSection = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
           {/* Contact Form */}
-          <div className="notebook-page p-8 md:p-12">
+          <div className="notebook-page p-6 sm:p-8 md:p-12">
             <h3 className="handwritten-bold text-3xl mb-8 text-charcoal">
               Send a Message
             </h3>
             
-            <form onSubmit={handleSubmit} className="space-y-6 relative z-10">
-              <div className="grid md:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6 relative z-10">
+              <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="handwritten text-lg text-charcoal block mb-2">
                     Your Name

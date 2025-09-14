@@ -241,8 +241,8 @@ const ProjectsSection = () => {
         {/* Featured Projects */}
         {featuredProjects.length > 0 && (
           <div className="mb-16">
-            <h3 className="text-3xl font-handwritten text-primary mb-8 text-center">Featured Work</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <h3 className="text-2xl lg:text-3xl font-handwritten text-primary mb-8 text-center">Featured Work</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {featuredProjects.map((project, index) => (
                 <Card 
                   key={project.id}
@@ -310,11 +310,11 @@ const ProjectsSection = () => {
         )}
 
         {/* Regular Projects Grid */}
-        <div className="masonry-grid">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {regularProjects.slice(0, visibleProjects).map((project, index) => (
             <Card 
               key={project.id}
-              className={`group relative overflow-hidden bg-card/40 backdrop-blur-sm border-primary/20 hover:border-neon-red/60 hover:shadow-glow-red transition-all duration-500 hover:scale-105 break-inside-avoid mb-6 ${getAnimationClass(project.animationType, index + featuredProjects.length)}`}
+              className={`group relative overflow-hidden bg-card/40 backdrop-blur-sm border-primary/20 hover:border-neon-red/60 hover:shadow-glow-red transition-all duration-500 hover:scale-105 ${getAnimationClass(project.animationType, index + featuredProjects.length)}`}
             >
               <div className="relative overflow-hidden">
                 <img 

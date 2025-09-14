@@ -49,25 +49,25 @@ const SkillsSection = () => {
 
   return (
     <section id="skills" className="py-20 bg-background relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="handwritten-bold text-5xl md:text-6xl mb-6 neon-text">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 lg:mb-16">
+          <h2 className="handwritten-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-6 neon-text">
             Skills & Technologies
           </h2>
-          <div className="h-1 w-24 bg-gradient-neon mx-auto mb-8 neon-glow rounded-full" />
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="h-0.5 lg:h-1 w-20 lg:w-24 bg-gradient-neon mx-auto mb-6 lg:mb-8 neon-glow rounded-full" />
+          <p className="text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto">
             A comprehensive toolkit for building modern, scalable applications
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
           {skillCategories.map((category, categoryIndex) => (
             <Card
               key={category.title}
               className="bg-card/80 backdrop-blur border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-glow-red overflow-hidden"
             >
-              <CardContent className="p-6">
-                <h3 className="handwritten text-2xl text-primary mb-6 text-center">
+              <CardContent className="p-4 sm:p-6">
+                <h3 className="handwritten text-lg sm:text-xl lg:text-2xl text-primary mb-4 sm:mb-6 text-center">
                   {category.title}
                 </h3>
                 

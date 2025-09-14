@@ -55,23 +55,23 @@ const AchievementsSection = () => {
         ))}
       </div>
 
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold handwritten-bold mb-4 neon-text">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold handwritten-bold mb-4 neon-text">
             🏆 Achievements Wall
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
             Celebrating victories in hackathons, competitions, and innovation challenges
           </p>
         </div>
 
         {/* Glowing divider line */}
-        <div className="flex justify-center mb-12">
-          <div className="w-32 h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full neon-glow" />
+        <div className="flex justify-center mb-8 lg:mb-12">
+          <div className="w-24 sm:w-32 h-0.5 lg:h-1 bg-gradient-to-r from-transparent via-primary to-transparent rounded-full neon-glow" />
         </div>
 
         {/* Grid layout achievements */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
           {achievements.map((achievement, index) => {
             const IconComponent = achievement.icon;
             return (
@@ -80,17 +80,17 @@ const AchievementsSection = () => {
                 className="bg-card/50 border-border hover:border-primary/50 transition-all duration-500 transform hover:scale-105 animate-fade-in group"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <CardContent className="p-6 text-center">
-                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full ${achievement.bgColor} mb-4 transition-all duration-300 group-hover:scale-110`}>
-                    <IconComponent className={`w-8 h-8 ${achievement.color}`} />
+                <CardContent className="p-4 sm:p-6 text-center">
+                  <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full ${achievement.bgColor} mb-3 sm:mb-4 transition-all duration-300 group-hover:scale-110`}>
+                    <IconComponent className={`w-6 h-6 sm:w-8 sm:h-8 ${achievement.color}`} />
                   </div>
-                  <h3 className="text-xl font-bold handwritten mb-2 neon-text">
+                  <h3 className="text-lg sm:text-xl font-bold handwritten mb-2 neon-text">
                     {achievement.title}
                   </h3>
                   <p className="text-xs text-accent uppercase tracking-wider mb-2">
                     {achievement.category}
                   </p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                     {achievement.description}
                   </p>
                 </CardContent>

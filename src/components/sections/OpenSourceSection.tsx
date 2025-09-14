@@ -79,60 +79,60 @@ const OpenSourceSection = () => {
 
   return (
     <section id="opensource" className="py-20 bg-background relative">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold handwritten-bold mb-4 neon-text">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold handwritten-bold mb-4 neon-text">
             🔓 Open Source Contributions
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
             Building in public and contributing to the developer community
           </p>
         </div>
 
         {/* GitHub Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16 max-w-4xl mx-auto">
-          <Card className="bg-card/50 border-border text-center p-6">
-            <Github className="w-8 h-8 mx-auto mb-3 text-primary" />
-            <div className="text-3xl font-bold handwritten neon-text">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-12 lg:mb-16 max-w-4xl mx-auto">
+          <Card className="bg-card/50 border-border text-center p-4 sm:p-6">
+            <Github className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-primary" />
+            <div className="text-2xl sm:text-3xl font-bold handwritten neon-text">
               {animatedStats.commits}+
             </div>
-            <div className="text-sm text-muted-foreground">Commits</div>
+            <div className="text-xs sm:text-sm text-muted-foreground">Commits</div>
           </Card>
           
-          <Card className="bg-card/50 border-border text-center p-6">
-            <GitPullRequest className="w-8 h-8 mx-auto mb-3 text-green-400" />
-            <div className="text-3xl font-bold handwritten neon-text">
+          <Card className="bg-card/50 border-border text-center p-4 sm:p-6">
+            <GitPullRequest className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-green-400" />
+            <div className="text-2xl sm:text-3xl font-bold handwritten neon-text">
               {animatedStats.prs}
             </div>
-            <div className="text-sm text-muted-foreground">Pull Requests</div>
+            <div className="text-xs sm:text-sm text-muted-foreground">Pull Requests</div>
           </Card>
           
-          <Card className="bg-card/50 border-border text-center p-6">
-            <Star className="w-8 h-8 mx-auto mb-3 text-yellow-400" />
-            <div className="text-3xl font-bold handwritten neon-text">
+          <Card className="bg-card/50 border-border text-center p-4 sm:p-6">
+            <Star className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-yellow-400" />
+            <div className="text-2xl sm:text-3xl font-bold handwritten neon-text">
               {animatedStats.stars}
             </div>
-            <div className="text-sm text-muted-foreground">Stars Earned</div>
+            <div className="text-xs sm:text-sm text-muted-foreground">Stars Earned</div>
           </Card>
           
-          <Card className="bg-card/50 border-border text-center p-6">
-            <GitFork className="w-8 h-8 mx-auto mb-3 text-blue-400" />
-            <div className="text-3xl font-bold handwritten neon-text">
+          <Card className="bg-card/50 border-border text-center p-4 sm:p-6">
+            <GitFork className="w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 text-blue-400" />
+            <div className="text-2xl sm:text-3xl font-bold handwritten neon-text">
               {animatedStats.repos}
             </div>
-            <div className="text-sm text-muted-foreground">Repositories</div>
+            <div className="text-xs sm:text-sm text-muted-foreground">Repositories</div>
           </Card>
         </div>
 
         {/* Repository Cards */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto">
           {repos.map((repo, index) => (
             <Card
               key={index}
               className="bg-card/50 border-border hover:border-primary/50 transition-all duration-500 transform hover:scale-105 animate-slide-in-left"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
-              <CardContent className="p-6">
+              <CardContent className="p-4 sm:p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center space-x-2">
                     <Github className="w-5 h-5 text-muted-foreground" />

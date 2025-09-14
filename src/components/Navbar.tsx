@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
-import { Sun, Moon } from 'lucide-react';
+import { Sun, Moon, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [mounted, setMounted] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
 
   useEffect(() => {
@@ -57,6 +58,7 @@ const Navbar = () => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setIsMobileMenuOpen(false); // Close mobile menu after navigation
     }
   };
 
@@ -67,66 +69,152 @@ const Navbar = () => {
   if (!mounted) return null;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border/50">
-      <div className="max-w-7xl mx-auto px-6 py-4">
-        <div className="backdrop-blur-md bg-card/90 border border-border/50 rounded-full px-6 py-3 shadow-2xl max-w-fit mx-auto">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-1">
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 hover:text-primary group ${
-                  activeSection === section.id
-                    ? 'text-primary'
-                    : 'text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                <span className="relative z-10">{section.label}</span>
+    <>
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-card/95 backdrop-blur-md border-b border-border/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+          {/* Desktop Navbar */}
+          <div className="hidden lg:block">
+            <div className="backdrop-blur-md bg-card/90 border border-border/50 rounded-full px-6 py-3 shadow-2xl max-w-fit mx-auto">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-1">
+                  {sections.map((section) => (
+                    <button
+                      key={section.id}
+                      onClick={() => scrollToSection(section.id)}
+                      className={`relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300 hover:text-primary group ${
+                        activeSection === section.id
+                          ? 'text-primary'
+                          : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      <span className="relative z-10">{section.label}</span>
+                      
+                      {/* Active indicator */}
+                      {activeSection === section.id && (
+                        <div className="absolute inset-0 bg-primary/10 rounded-full animate-fade-in" />
+                      )}
+                      
+                      {/* Glow effect on hover */}
+                      <div className={`absolute inset-0 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 ${
+                        theme === 'dark' ? 'bg-red-500/10' : 'bg-cyan-500/10'
+                      }`} />
+                      
+                      {/* Active underline glow */}
+                      {activeSection === section.id && (
+                        <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 rounded-full animate-fade-in ${
+                          theme === 'dark' ? 'bg-red-500 shadow-[0_0_8px_#ef4444]' : 'bg-cyan-500 shadow-[0_0_8px_#06b6d4]'
+                        }`} />
+                      )}
+                    </button>
+                  ))}
+                </div>
                 
-                {/* Active indicator */}
-                {activeSection === section.id && (
-                  <div className="absolute inset-0 bg-primary/10 rounded-full animate-fade-in" />
-                )}
-                
-                {/* Glow effect on hover */}
-                <div className={`absolute inset-0 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 ${
-                  theme === 'dark' ? 'bg-red-500/10' : 'bg-cyan-500/10'
-                }`} />
-                
-                {/* Active underline glow */}
-                {activeSection === section.id && (
-                  <div className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 rounded-full animate-fade-in ${
-                    theme === 'dark' ? 'bg-red-500 shadow-[0_0_8px_#ef4444]' : 'bg-cyan-500 shadow-[0_0_8px_#06b6d4]'
-                  }`} />
-                )}
-              </button>
-            ))}
-          </div>
-          
-          {/* Theme Toggle */}
-          <button
-            onClick={toggleTheme}
-            className="ml-4 p-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/90 transition-all duration-300 neon-glow group"
-            aria-label="Toggle theme"
-          >
-            <div className="relative w-5 h-5">
-              <Sun 
-                className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
-                  theme === 'navy' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-75'
-                }`}
-              />
-              <Moon 
-                className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
-                  theme === 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-75'
-                }`}
-              />
+                {/* Theme Toggle */}
+                <button
+                  onClick={toggleTheme}
+                  className="ml-4 p-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/90 transition-all duration-300 neon-glow group"
+                  aria-label="Toggle theme"
+                >
+                  <div className="relative w-5 h-5">
+                    <Sun 
+                      className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
+                        theme === 'navy' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-75'
+                      }`}
+                    />
+                    <Moon 
+                      className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
+                        theme === 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-75'
+                      }`}
+                    />
+                  </div>
+                </button>
+              </div>
             </div>
-          </button>
+          </div>
+
+          {/* Mobile/Tablet Navbar */}
+          <div className="lg:hidden">
+            <div className="flex items-center justify-between">
+              <div className="text-lg font-bold text-primary">
+                Nikhilesh
+              </div>
+              
+              <div className="flex items-center gap-2">
+                {/* Theme Toggle for Mobile */}
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/90 transition-all duration-300"
+                  aria-label="Toggle theme"
+                >
+                  <div className="relative w-5 h-5">
+                    <Sun 
+                      className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
+                        theme === 'navy' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-75'
+                      }`}
+                    />
+                    <Moon 
+                      className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
+                        theme === 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-75'
+                      }`}
+                    />
+                  </div>
+                </button>
+
+                {/* Hamburger Menu Button */}
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="p-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/90 transition-all duration-300"
+                  aria-label="Toggle menu"
+                >
+                  <div className="relative w-6 h-6">
+                    <Menu 
+                      className={`absolute inset-0 w-6 h-6 text-primary transition-all duration-300 ${
+                        isMobileMenuOpen ? 'opacity-0 rotate-180 scale-75' : 'opacity-100 rotate-0 scale-100'
+                      }`}
+                    />
+                    <X 
+                      className={`absolute inset-0 w-6 h-6 text-primary transition-all duration-300 ${
+                        isMobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-75'
+                      }`}
+                    />
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-      </div>
-    </nav>
+
+        {/* Mobile Menu Dropdown */}
+        <div className={`lg:hidden absolute top-full left-0 right-0 bg-card/95 backdrop-blur-md border-b border-border/50 transition-all duration-300 ease-in-out ${
+          isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none'
+        }`}>
+          <div className="max-w-7xl mx-auto px-4 py-4">
+            <div className="grid grid-cols-2 gap-2">
+              {sections.map((section) => (
+                <button
+                  key={section.id}
+                  onClick={() => scrollToSection(section.id)}
+                  className={`relative px-4 py-3 text-sm font-medium rounded-lg transition-all duration-300 hover:text-primary ${
+                    activeSection === section.id
+                      ? 'text-primary bg-primary/10'
+                      : 'text-muted-foreground hover:bg-muted/50'
+                  }`}
+                >
+                  {section.label}
+                  
+                  {/* Active indicator for mobile */}
+                  {activeSection === section.id && (
+                    <div className={`absolute bottom-1 left-1/2 transform -translate-x-1/2 w-6 h-0.5 rounded-full ${
+                      theme === 'dark' ? 'bg-red-500' : 'bg-cyan-500'
+                    }`} />
+                  )}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </nav>
+    </>
   );
 };
 
