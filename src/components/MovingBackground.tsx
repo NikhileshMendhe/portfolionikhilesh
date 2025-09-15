@@ -57,7 +57,7 @@ const MovingBackground = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 w-full max-w-[100vw]">
       {boxes.map(box => (
         <div
           key={box.id}

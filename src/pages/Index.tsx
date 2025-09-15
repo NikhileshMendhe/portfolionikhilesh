@@ -19,7 +19,7 @@ import HobbiesSection from '@/components/sections/HobbiesSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background transition-colors duration-500">
+    <div className="min-h-screen bg-background transition-colors duration-500 overflow-x-hidden w-full max-w-[100vw]">
       <MovingBackground />
       <Navbar />
       <HeroSection />
