@@ -135,45 +135,51 @@ const Navbar = () => {
           {/* Mobile/Tablet Navbar */}
           <div className="lg:hidden">
             <div className="flex items-center justify-between">
-              {/* Hamburger Menu Button - Left */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="p-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/90 transition-all duration-300"
-                aria-label="Toggle menu"
-              >
-                <div className="relative w-6 h-6">
-                  <Menu 
-                    className={`absolute inset-0 w-6 h-6 text-primary transition-all duration-300 ${
-                      isMobileMenuOpen ? 'opacity-0 rotate-180 scale-75' : 'opacity-100 rotate-0 scale-100'
-                    }`}
-                  />
-                  <X 
-                    className={`absolute inset-0 w-6 h-6 text-primary transition-all duration-300 ${
-                      isMobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-75'
-                    }`}
-                  />
-                </div>
-              </button>
+              {/* Left side - Hamburger Menu and Theme Toggle grouped together */}
+              <div className="flex items-center gap-2">
+                {/* Hamburger Menu Button */}
+                <button
+                  onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                  className="p-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/90 transition-all duration-300"
+                  aria-label="Toggle menu"
+                >
+                  <div className="relative w-6 h-6">
+                    <Menu 
+                      className={`absolute inset-0 w-6 h-6 text-primary transition-all duration-300 ${
+                        isMobileMenuOpen ? 'opacity-0 rotate-180 scale-75' : 'opacity-100 rotate-0 scale-100'
+                      }`}
+                    />
+                    <X 
+                      className={`absolute inset-0 w-6 h-6 text-primary transition-all duration-300 ${
+                        isMobileMenuOpen ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-75'
+                      }`}
+                    />
+                  </div>
+                </button>
+                
+                {/* Theme Toggle */}
+                <button
+                  onClick={toggleTheme}
+                  className="p-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/90 transition-all duration-300"
+                  aria-label="Toggle theme"
+                >
+                  <div className="relative w-5 h-5">
+                    <Sun 
+                      className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
+                        theme === 'navy' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-75'
+                      }`}
+                    />
+                    <Moon 
+                      className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
+                        theme === 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-75'
+                      }`}
+                    />
+                  </div>
+                </button>
+              </div>
               
-              {/* Theme Toggle - Right */}
-              <button
-                onClick={toggleTheme}
-                className="p-2 rounded-full bg-card/80 backdrop-blur-md border border-border/50 hover:bg-card/90 transition-all duration-300"
-                aria-label="Toggle theme"
-              >
-                <div className="relative w-5 h-5">
-                  <Sun 
-                    className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
-                      theme === 'navy' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 rotate-180 scale-75'
-                    }`}
-                  />
-                  <Moon 
-                    className={`absolute inset-0 w-5 h-5 text-primary transition-all duration-500 ${
-                      theme === 'dark' ? 'opacity-100 rotate-0 scale-100' : 'opacity-0 -rotate-180 scale-75'
-                    }`}
-                  />
-                </div>
-              </button>
+              {/* Right side - Empty to maintain flex layout */}
+              <div></div>
             </div>
           </div>
         </div>
