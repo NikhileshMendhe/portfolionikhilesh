@@ -363,6 +363,28 @@
     }
   }
 
+  /* Futuristic Grid Animation */
+  @keyframes grid-move {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(60px, 60px);
+    }
+  }
+
+  /* Neon Pulse Animation */
+  @keyframes neon-pulse {
+    0% {
+      box-shadow: 0 0 5px currentColor, 0 0 10px currentColor;
+      opacity: 0.8;
+    }
+    100% {
+      box-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+      opacity: 1;
+    }
+  }
+
   /* Cinematic animations */
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
@@ -471,5 +493,18 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
+  }
+
+  /* Futuristic project section utilities */
+  .animate-grid-move {
+    animation: grid-move 20s linear infinite;
+  }
+
+  .animate-neon-pulse {
+    animation: neon-pulse 2s ease-in-out infinite alternate;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
   }
 }
