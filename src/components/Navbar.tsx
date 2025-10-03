@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { Sun, Moon, Menu, X } from 'lucide-react';
+import CircularNavbar from './CircularNavbar';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [mounted, setMounted] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     setMounted(true);
@@ -67,6 +70,17 @@ const Navbar = () => {
   };
 
   if (!mounted) return null;
+
+  // Show circular navbar on mobile only
+  if (isMobile) {
+    return (
+      <CircularNavbar 
+        activeSection={activeSection}
+        onNavigate={scrollToSection}
+        sections={sections}
+      />
+    );
+  }
 
   return (
     <>
