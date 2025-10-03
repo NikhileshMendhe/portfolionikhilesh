@@ -18,6 +18,7 @@ const CircularNavbar = ({ activeSection, onNavigate, sections }: CircularNavbarP
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const startAngleRef = useRef(0);
   const currentRotationRef = useRef(0);
+  const lastSoundTimeRef = useRef(0);
 
   useEffect(() => {
     setMounted(true);
@@ -27,11 +28,14 @@ const CircularNavbar = ({ activeSection, onNavigate, sections }: CircularNavbarP
   }, []);
 
   const playScrollSound = () => {
-    if (audioRef.current) {
+    const now = Date.now();
+    // Debounce: only play sound if 150ms has passed since last sound
+    if (audioRef.current && now - lastSoundTimeRef.current > 150) {
       audioRef.current.currentTime = 0;
       audioRef.current.play().catch(() => {
         // Ignore autoplay errors
       });
+      lastSoundTimeRef.current = now;
     }
   };
 
