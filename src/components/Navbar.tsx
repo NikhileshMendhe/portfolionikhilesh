@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import CircularNavbar from './CircularNavbar';
+import FuturisticThemeSlider from './FuturisticThemeSlider';
 import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
@@ -71,14 +72,17 @@ const Navbar = () => {
 
   if (!mounted) return null;
 
-  // Show circular navbar on mobile only
+  // Show circular navbar and futuristic slider on mobile only
   if (isMobile) {
     return (
-      <CircularNavbar 
-        activeSection={activeSection}
-        onNavigate={scrollToSection}
-        sections={sections}
-      />
+      <>
+        <FuturisticThemeSlider />
+        <CircularNavbar 
+          activeSection={activeSection}
+          onNavigate={scrollToSection}
+          sections={sections}
+        />
+      </>
     );
   }
 
