@@ -20,12 +20,12 @@ const AchievementsSection = () => {
       description: "First place in state-level hackathon competition"
     },
     {
-      title: "Innovation Award",
-      category: "Tech Competition",
+      title: "Coding & IEEE Member",
+      category: "Professional Development",
       icon: Award,
       color: "text-green-400",
       bgColor: "bg-green-400/10",
-      description: "Most innovative solution award"
+      description: "Active member of IEEE and coding communities"
     },
     {
       title: "Coding Excellence",

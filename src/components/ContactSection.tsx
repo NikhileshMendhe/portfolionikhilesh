@@ -141,7 +141,7 @@ const ContactSection = () => {
                   <div className="w-2 h-2 bg-primary rounded-full mt-3 flex-shrink-0" />
                   <div>
                     <h4 className="handwritten text-lg text-foreground mb-1">Email</h4>
-                    <p className="text-muted-foreground">alex.chen.art@email.com</p>
+                    <p className="text-muted-foreground">nicksgalaxy30@gmail.com</p>
                   </div>
                 </div>
                 
@@ -149,7 +149,7 @@ const ContactSection = () => {
                   <div className="w-2 h-2 bg-accent rounded-full mt-3 flex-shrink-0" />
                   <div>
                     <h4 className="handwritten text-lg text-foreground mb-1">Response Time</h4>
-                    <p className="text-muted-foreground">Usually within 24-48 hours</p>
+                    <p className="text-muted-foreground">Usually within 24–48 hours</p>
                   </div>
                 </div>
                 
@@ -169,25 +169,40 @@ const ContactSection = () => {
               </h3>
               
               <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                  <span className="text-foreground">Character Design & Concept Art</span>
+                <div className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-foreground font-semibold mb-1">Web Applications & Dashboards</h4>
+                    <p className="text-sm text-muted-foreground">Building dynamic, responsive, and scalable web apps with modern tech stacks.</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                  <span className="text-foreground">Environment & World Building</span>
+                <div className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-foreground font-semibold mb-1">Full Stack Development</h4>
+                    <p className="text-sm text-muted-foreground">Creating end-to-end solutions — from frontend interfaces to backend architecture and database management.</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                  <span className="text-foreground">Storyboarding & Visual Development</span>
+                <div className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-foreground font-semibold mb-1">APIs & Integrations</h4>
+                    <p className="text-sm text-muted-foreground">Designing secure and efficient RESTful APIs for seamless communication between systems.</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-accent rounded-full" />
-                  <span className="text-foreground">Game Asset Design</span>
+                <div className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 bg-accent rounded-full mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-foreground font-semibold mb-1">UI/UX Development</h4>
+                    <p className="text-sm text-muted-foreground">Translating design ideas into pixel-perfect, user-friendly interfaces that perform beautifully.</p>
+                  </div>
                 </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 bg-primary rounded-full" />
-                  <span className="text-foreground">Illustration & Digital Art</span>
+                <div className="flex items-start gap-3">
+                  <div className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-foreground font-semibold mb-1">Automation & Optimization Projects</h4>
+                    <p className="text-sm text-muted-foreground">Developing smart systems to streamline processes, improve efficiency, and enhance user experience.</p>
+                  </div>
                 </div>
               </div>
             </Card>

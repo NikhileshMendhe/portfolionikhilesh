@@ -12,8 +12,8 @@ const StatsSection = () => {
   const finalStats = {
     codingHours: 2500,
     projects: 25,
-    hackathons: 8,
-    contributions: 150
+    hackathons: 4,
+    contributions: 15
   };
 
   useEffect(() => {

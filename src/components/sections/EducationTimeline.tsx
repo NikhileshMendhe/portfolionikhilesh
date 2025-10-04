@@ -8,25 +8,25 @@ const EducationTimeline = () => {
     {
       id: 1,
       level: "Bachelor's in Computer Science",
-      institution: "Your College Name",
-      period: "2020 - 2024",
+      institution: "GH Raisoni College of Engineering and Management",
+      period: "2022 - 2026",
       cgpa: "8.5 CGPA",
       highlights: ["Data Structures", "Algorithms", "Web Development", "Machine Learning"]
     },
     {
       id: 2,
       level: "Higher Secondary (XII)",
-      institution: "Your School Name",
-      period: "2018 - 2020",
-      cgpa: "85%",
+      institution: "Jijamata Jr. College",
+      period: "2020 - 2022",
+      cgpa: "70%",
       highlights: ["Mathematics", "Physics", "Computer Science", "Chemistry"]
     },
     {
       id: 3,
       level: "Secondary School (X)",
-      institution: "Your School Name",
-      period: "2016 - 2018",
-      cgpa: "92%",
+      institution: "St. Paul English Medium School",
+      period: "2019 - 2020",
+      cgpa: "75%",
       highlights: ["Mathematics", "Science", "English", "Social Science"]
     }
   ];

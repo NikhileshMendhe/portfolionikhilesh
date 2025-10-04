@@ -61,8 +61,43 @@ const Navbar = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false); // Close mobile menu after navigation
+      // Create neon beam animation for desktop
+      if (!isMobile) {
+        const beam = document.createElement('div');
+        beam.className = 'fixed top-0 left-0 w-full h-1 z-[100] pointer-events-none';
+        beam.style.background = theme === 'dark' 
+          ? 'linear-gradient(90deg, transparent, #ef4444, transparent)' 
+          : 'linear-gradient(90deg, transparent, #06b6d4, transparent)';
+        beam.style.boxShadow = theme === 'dark'
+          ? '0 0 20px #ef4444, 0 0 40px #ef4444'
+          : '0 0 20px #06b6d4, 0 0 40px #06b6d4';
+        beam.style.animation = 'slideBeam 1.2s ease-out forwards';
+        document.body.appendChild(beam);
+
+        // Add keyframes if not already present
+        if (!document.getElementById('beam-animation-styles')) {
+          const style = document.createElement('style');
+          style.id = 'beam-animation-styles';
+          style.textContent = `
+            @keyframes slideBeam {
+              0% { transform: translateY(0); opacity: 1; }
+              100% { transform: translateY(100vh); opacity: 0; }
+            }
+          `;
+          document.head.appendChild(style);
+        }
+
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 300);
+
+        setTimeout(() => {
+          beam.remove();
+        }, 1500);
+      } else {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      setIsMobileMenuOpen(false);
     }
   };
 

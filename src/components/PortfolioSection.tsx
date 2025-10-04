@@ -68,11 +68,11 @@ const PortfolioSection = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="handwritten-bold text-5xl md:text-6xl mb-6 neon-text">
-            Portfolio
+            My Side Hustle
           </h2>
           <div className="h-1 w-24 bg-gradient-neon mx-auto mb-8 neon-glow rounded-full" />
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            A collection of my latest concept art, character designs, and visual development work
+            Showcasing my best side projects, creative builds, and passion-driven web experiments that reflect my journey as a developer.
           </p>
         </div>
 
@@ -138,7 +138,7 @@ const PortfolioSection = () => {
                 </div>
                 <h4 className="handwritten text-xl mb-2 text-charcoal">Ideation</h4>
                 <p className="text-charcoal/70">
-                  Initial concept sketches and mood boards to establish the visual direction
+                  Understanding the problem, brainstorming solutions, and sketching out the project flow — from wireframes to core architecture.
                 </p>
               </div>
               <div className="text-center">
@@ -147,16 +147,16 @@ const PortfolioSection = () => {
                 </div>
                 <h4 className="handwritten text-xl mb-2 text-charcoal">Development</h4>
                 <p className="text-charcoal/70">
-                  Detailed design exploration with multiple iterations and refinements
+                  Bringing ideas to life through clean, efficient code. Building responsive frontends, integrating APIs, and developing scalable backends with continuous testing and iteration.
                 </p>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 bg-neon.red rounded-full flex items-center justify-center mx-auto mb-4 text-white font-bold text-xl">
                   3
                 </div>
-                <h4 className="handwritten text-xl mb-2 text-charcoal">Finalization</h4>
+                <h4 className="handwritten text-xl mb-2 text-charcoal">Deployment</h4>
                 <p className="text-charcoal/70">
-                  Polished artwork ready for production and implementation
+                  Polishing the final product, optimizing performance, and deploying it to production. Ensuring smooth functionality, security, and a great user experience from end to end.
                 </p>
               </div>
             </div>
