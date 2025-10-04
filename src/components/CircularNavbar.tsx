@@ -118,8 +118,60 @@ const CircularNavbar = ({ activeSection, onNavigate, sections }: CircularNavbarP
   }, [isDragging]);
 
   const handleNavClick = (sectionId: string) => {
-    onNavigate(sectionId);
     setIsOpen(false);
+    
+    // Create cinematic scroll animation
+    const targetElement = document.getElementById(sectionId);
+    if (!targetElement) return;
+
+    // Create neon beam effect
+    const beam = document.createElement('div');
+    beam.style.position = 'fixed';
+    beam.style.top = '0';
+    beam.style.left = '50%';
+    beam.style.transform = 'translateX(-50%)';
+    beam.style.width = '4px';
+    beam.style.height = '0';
+    beam.style.background = theme === 'dark' 
+      ? 'linear-gradient(180deg, #ef4444, transparent)'
+      : 'linear-gradient(180deg, #06b6d4, transparent)';
+    beam.style.boxShadow = theme === 'dark'
+      ? '0 0 20px #ef4444, 0 0 40px #ef4444'
+      : '0 0 20px #06b6d4, 0 0 40px #06b6d4';
+    beam.style.zIndex = '9999';
+    beam.style.pointerEvents = 'none';
+    beam.style.transition = 'height 1s ease-out';
+    document.body.appendChild(beam);
+
+    // Animate beam
+    setTimeout(() => {
+      beam.style.height = '100vh';
+    }, 10);
+
+    // Scroll with smooth animation
+    setTimeout(() => {
+      targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      
+      // Add glow to section heading
+      const heading = targetElement.querySelector('h2, h3');
+      if (heading) {
+        heading.classList.add('animate-pulse');
+        setTimeout(() => {
+          heading.classList.remove('animate-pulse');
+        }, 2000);
+      }
+    }, 500);
+
+    // Remove beam
+    setTimeout(() => {
+      beam.style.opacity = '0';
+      beam.style.transition = 'opacity 0.5s ease-out';
+      setTimeout(() => {
+        document.body.removeChild(beam);
+      }, 500);
+    }, 1200);
+
+    onNavigate(sectionId);
   };
 
   if (!mounted) return null;
