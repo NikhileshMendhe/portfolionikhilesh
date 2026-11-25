@@ -10,23 +10,23 @@ const EducationTimeline = () => {
       level: "Bachelor's in Computer Science",
       institution: "GH Raisoni College of Engineering and Management",
       period: "2022 - 2026",
-      cgpa: "8.5 CGPA",
+      cgpa: "8.2 CGPA",
       highlights: ["Data Structures", "Algorithms", "Web Development", "Machine Learning"]
     },
     {
       id: 2,
       level: "Higher Secondary (XII)",
       institution: "Jijamata Jr. College",
-      period: "2020 - 2022",
-      cgpa: "70%",
+      period: "2021 - 2022",
+      cgpa: "65.67%",
       highlights: ["Mathematics", "Physics", "Computer Science", "Chemistry"]
     },
     {
       id: 3,
       level: "Secondary School (X)",
-      institution: "St. Paul English Medium School",
+      institution: "St. Paul School, Nagpur",
       period: "2019 - 2020",
-      cgpa: "75%",
+      cgpa: "74.40%",
       highlights: ["Mathematics", "Science", "English", "Social Science"]
     }
   ];
@@ -51,7 +51,7 @@ const EducationTimeline = () => {
   }, []);
 
   return (
-    <section id="education" className="py-20 bg-background relative overflow-hidden">
+    <section id="education" className="py-20 bg-transparent relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="handwritten-bold text-5xl md:text-6xl mb-6 neon-text">
@@ -62,7 +62,7 @@ const EducationTimeline = () => {
 
         <div className="relative">
           {/* Timeline line */}
-          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-primary via-accent to-primary rounded-full opacity-50" />
+          <div className="absolute left-1/2 transform -translate-x-1/2 w-1 h-full bg-gradient-to-b from-blue-500 via-indigo-500 to-cyan-500 rounded-full opacity-60" />
 
           <div className="space-y-16">
             {education.map((item, index) => (
@@ -78,20 +78,20 @@ const EducationTimeline = () => {
                     ? `animate-fade-in ${index % 2 === 0 ? 'animate-slide-in-left' : 'animate-slide-in-right'}`
                     : 'opacity-0'
                 }`}>
-                  <Card className="bg-card/80 backdrop-blur border-primary/20 hover:border-primary/40 transition-all duration-300 hover:shadow-glow-red">
+                  <Card className="bg-white/90 dark:bg-card/80 backdrop-blur-md border border-slate-200/90 dark:border-primary/20 hover:border-blue-400 dark:hover:border-primary/40 transition-all duration-300 shadow-md hover:shadow-xl dark:hover:shadow-glow-blue rounded-2xl">
                     <CardContent className="p-6">
                       <div className="relative">
-                        <h3 className="handwritten text-2xl text-primary mb-2">{item.level}</h3>
-                        <h4 className="text-lg font-semibold text-foreground mb-2">{item.institution}</h4>
-                        <p className="text-muted-foreground mb-3">{item.period}</p>
-                        <div className="bg-primary/10 rounded-lg p-3 mb-4">
-                          <span className="text-primary font-bold text-lg">{item.cgpa}</span>
+                        <h3 className="handwritten text-2xl text-blue-600 dark:text-primary mb-2 font-bold">{item.level}</h3>
+                        <h4 className="text-lg font-bold text-slate-800 dark:text-foreground mb-2">{item.institution}</h4>
+                        <p className="text-slate-500 dark:text-muted-foreground mb-3 text-sm">{item.period}</p>
+                        <div className="bg-gradient-to-r from-blue-50 to-cyan-50 dark:bg-primary/10 rounded-lg p-3 mb-4 border border-blue-200/70 dark:border-transparent">
+                          <span className="text-blue-600 dark:text-primary font-bold text-lg">{item.cgpa}</span>
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {item.highlights.map((highlight, idx) => (
                             <span
                               key={idx}
-                              className="px-3 py-1 bg-accent/20 text-accent rounded-full text-sm"
+                              className="px-3 py-1 bg-blue-50 dark:bg-accent/20 text-blue-600 dark:text-accent border border-blue-200/60 dark:border-transparent rounded-full text-xs font-semibold"
                             >
                               {highlight}
                             </span>
@@ -105,8 +105,8 @@ const EducationTimeline = () => {
                 {/* Timeline dot */}
                 <div className={`absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full border-4 transition-all duration-500 ${
                   visibleItems.includes(item.id)
-                    ? 'bg-primary border-primary shadow-glow-red pulse-glow'
-                    : 'bg-background border-muted'
+                    ? 'bg-blue-600 border-blue-400 shadow-[0_0_12px_#2563eb] pulse-glow'
+                    : 'bg-white dark:bg-background border-slate-300 dark:border-muted'
                 }`} />
               </div>
             ))}

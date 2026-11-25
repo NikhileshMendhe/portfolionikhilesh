@@ -44,7 +44,7 @@ const FuturisticThemeSlider = () => {
       setTheme('dark');
     } else {
       setPosition(0);
-      setTheme('navy');
+      setTheme('light');
     }
   };
 
@@ -73,6 +73,7 @@ const FuturisticThemeSlider = () => {
         window.removeEventListener('mouseup', handleDragEnd);
       };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDragging, position]);
 
   if (!mounted) return null;
@@ -86,8 +87,8 @@ const FuturisticThemeSlider = () => {
         className="relative w-full h-12 rounded-full bg-black/90 backdrop-blur-md border-2 border-border/50 p-1.5 flex items-center shadow-lg select-none"
         style={{
           boxShadow: isDark 
-            ? '0 0 20px rgba(239, 68, 68, 0.3)' 
-            : '0 0 20px rgba(6, 182, 212, 0.3)',
+            ? '0 0 20px rgba(37, 99, 235, 0.3)' 
+            : '0 0 20px rgba(14, 165, 233, 0.3)',
           cursor: isDragging ? 'grabbing' : 'grab',
         }}
         onTouchStart={handleTouchStart}
@@ -101,13 +102,13 @@ const FuturisticThemeSlider = () => {
             className="absolute inset-0 transition-all duration-300"
             style={{
               background: isDark 
-                ? 'linear-gradient(90deg, transparent 50%, rgba(239, 68, 68, 0.15) 100%)'
-                : 'linear-gradient(90deg, rgba(6, 182, 212, 0.15) 0%, transparent 50%)',
+                ? 'linear-gradient(90deg, transparent 50%, rgba(37, 99, 235, 0.15) 100%)'
+                : 'linear-gradient(90deg, rgba(14, 165, 233, 0.2) 0%, transparent 50%)',
             }}
           />
         </div>
 
-        {/* Left Icon - Blue/Light */}
+        {/* Left Icon - Cyan/Light */}
         <div className={`absolute left-3 z-10 transition-all duration-300 ${
           !isDark ? 'text-cyan-500 scale-100' : 'text-muted-foreground/40 scale-90'
         }`}>
@@ -116,12 +117,12 @@ const FuturisticThemeSlider = () => {
           }} />
         </div>
 
-        {/* Right Icon - Red/Dark */}
+        {/* Right Icon - Blue/Dark */}
         <div className={`absolute right-3 z-10 transition-all duration-300 ${
-          isDark ? 'text-red-500 scale-100' : 'text-muted-foreground/40 scale-90'
+          isDark ? 'text-blue-500 scale-100' : 'text-muted-foreground/40 scale-90'
         }`}>
           <Moon className="w-5 h-5" style={{
-            filter: isDark ? 'drop-shadow(0 0 6px #ef4444)' : 'none'
+            filter: isDark ? 'drop-shadow(0 0 6px #3b82f6)' : 'none'
           }} />
         </div>
 
@@ -132,11 +133,11 @@ const FuturisticThemeSlider = () => {
             left: `calc(${position * 100}% - ${position * 2.25}rem + 0.25rem)`,
             transitionDuration: isDragging ? '0ms' : '500ms',
             background: isDark 
-              ? 'radial-gradient(circle, #ef4444, #b91c1c)'
-              : 'radial-gradient(circle, #06b6d4, #0891b2)',
+              ? 'radial-gradient(circle, #2563eb, #1d4ed8)'
+              : 'radial-gradient(circle, #0ea5e9, #0284c7)',
             boxShadow: isDark
-              ? '0 0 25px #ef4444, 0 0 45px #ef444470, inset 0 0 12px rgba(255, 255, 255, 0.4)'
-              : '0 0 25px #06b6d4, 0 0 45px #06b6d470, inset 0 0 12px rgba(255, 255, 255, 0.4)',
+              ? '0 0 25px #2563eb, 0 0 45px #2563eb70, inset 0 0 12px rgba(255, 255, 255, 0.4)'
+              : '0 0 25px #0ea5e9, 0 0 45px #0ea5e970, inset 0 0 12px rgba(255, 255, 255, 0.4)',
             border: '2px solid rgba(255, 255, 255, 0.6)',
           }}
         >
@@ -145,8 +146,8 @@ const FuturisticThemeSlider = () => {
             className="absolute inset-0 rounded-full animate-pulse"
             style={{
               background: isDark
-                ? 'radial-gradient(circle, rgba(239, 68, 68, 0.6), transparent 70%)'
-                : 'radial-gradient(circle, rgba(6, 182, 212, 0.6), transparent 70%)',
+                ? 'radial-gradient(circle, rgba(37, 99, 235, 0.6), transparent 70%)'
+                : 'radial-gradient(circle, rgba(14, 165, 233, 0.6), transparent 70%)',
             }}
           />
         </div>
@@ -159,8 +160,8 @@ const FuturisticThemeSlider = () => {
             width: `calc(${position * 100}% - ${position * 2.25}rem)`,
             transitionDuration: isDragging ? '0ms' : '500ms',
             background: isDark
-              ? 'linear-gradient(90deg, transparent, rgba(239, 68, 68, 0.4))'
-              : 'linear-gradient(90deg, rgba(6, 182, 212, 0.4), transparent)',
+              ? 'linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.4))'
+              : 'linear-gradient(90deg, rgba(14, 165, 233, 0.4), transparent)',
           }}
         />
       </div>

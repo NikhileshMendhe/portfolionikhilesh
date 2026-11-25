@@ -1,41 +1,17 @@
-import { Trophy, Medal, Award, Star } from 'lucide-react';
+import { Trophy, TrendingUp, Target, Award } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { marketingAchievements } from '@/data/marketingData';
 
 const AchievementsSection = () => {
-  const achievements = [
-    {
-      title: "SIH 2024 Runner-up",
-      category: "National Hackathon",
-      icon: Trophy,
-      color: "text-yellow-400",
-      bgColor: "bg-yellow-400/10",
-      description: "Runner-up position in Smart India Hackathon 2024"
-    },
-    {
-      title: "State Level Winner",
-      category: "College Hackathon",
-      icon: Medal,
-      color: "text-blue-400",
-      bgColor: "bg-blue-400/10",
-      description: "First place in state-level hackathon competition"
-    },
-    {
-      title: "Coding & IEEE Member",
-      category: "Professional Development",
-      icon: Award,
-      color: "text-green-400",
-      bgColor: "bg-green-400/10",
-      description: "Active member of IEEE and coding communities"
-    },
-    {
-      title: "Coding Excellence",
-      category: "Programming Contest",
-      icon: Star,
-      color: "text-purple-400",
-      bgColor: "bg-purple-400/10",
-      description: "Excellence in competitive programming"
+  const getAchievementIcon = (index: number) => {
+    switch (index % 4) {
+      case 0: return { icon: Trophy, color: "text-yellow-400", bgColor: "bg-yellow-400/10" };
+      case 1: return { icon: TrendingUp, color: "text-blue-400", bgColor: "bg-blue-400/10" };
+      case 2: return { icon: Target, color: "text-green-400", bgColor: "bg-green-400/10" };
+      case 3: return { icon: Award, color: "text-purple-400", bgColor: "bg-purple-400/10" };
+      default: return { icon: Trophy, color: "text-yellow-400", bgColor: "bg-yellow-400/10" };
     }
-  ];
+  };
 
   return (
     <section id="achievements" className="py-20 bg-background relative overflow-hidden">
@@ -55,13 +31,13 @@ const AchievementsSection = () => {
         ))}
       </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 lg:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold handwritten-bold mb-4 neon-text">
-            🏆 Achievements Wall
+            🏆 Marketing Milestones
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-2xl mx-auto">
-            Celebrating victories in hackathons, competitions, and innovation challenges
+          <p className="text-base sm:text-lg lg:text-xl text-slate-600 dark:text-muted-foreground max-w-2xl mx-auto">
+            Key campaign scaling milestones, performance records, and growth achievements
           </p>
         </div>
 
@@ -71,26 +47,28 @@ const AchievementsSection = () => {
         </div>
 
         {/* Grid layout achievements */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
-          {achievements.map((achievement, index) => {
-            const IconComponent = achievement.icon;
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 max-w-7xl mx-auto">
+          {marketingAchievements.map((achievement, index) => {
+            const { icon: IconComponent, color, bgColor } = getAchievementIcon(index);
             return (
               <Card
                 key={index}
-                className="bg-card/50 border-border hover:border-primary/50 transition-all duration-500 transform hover:scale-105 animate-fade-in group"
+                data-placeholder="[Placeholder]"
+                className="bg-white/90 dark:bg-card/50 border border-slate-200/90 dark:border-border hover:border-blue-400 dark:hover:border-primary/50 transition-all duration-500 shadow-md hover:shadow-xl rounded-2xl transform hover:scale-105 animate-fade-in group"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardContent className="p-4 sm:p-6 text-center">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full ${achievement.bgColor} mb-3 sm:mb-4 transition-all duration-300 group-hover:scale-110`}>
-                    <IconComponent className={`w-6 h-6 sm:w-8 sm:h-8 ${achievement.color}`} />
+                  <div className={`inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 rounded-full ${bgColor} mb-3 sm:mb-4 transition-all duration-300 group-hover:scale-110 shadow-sm`}>
+                    <IconComponent className={`w-6 h-6 sm:w-8 sm:h-8 ${color}`} />
                   </div>
-                  <h3 className="text-lg sm:text-xl font-bold handwritten mb-2 neon-text">
+                  {/* TODO: [Placeholder] Achievement {index + 1} */}
+                  <h3 className="text-lg sm:text-xl font-bold handwritten mb-2 text-slate-900 dark:text-foreground group-hover:text-blue-600 transition-colors">
                     {achievement.title}
                   </h3>
-                  <p className="text-xs text-accent uppercase tracking-wider mb-2">
+                  <p className="text-xs text-blue-600 dark:text-accent font-semibold uppercase tracking-wider mb-2">
                     {achievement.category}
                   </p>
-                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  <p className="text-xs sm:text-sm text-slate-600 dark:text-muted-foreground leading-relaxed">
                     {achievement.description}
                   </p>
                 </CardContent>

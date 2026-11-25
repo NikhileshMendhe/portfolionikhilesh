@@ -61,7 +61,7 @@ const MovingBackground = () => {
       {boxes.map(box => (
         <div
           key={box.id}
-          className="absolute border border-primary/20 rounded-md transition-all duration-100"
+          className="absolute border border-blue-500/15 bg-gradient-to-br from-blue-500/[0.03] to-cyan-500/[0.04] rounded-2xl shadow-sm transition-all duration-100 pointer-events-none"
           style={{
             left: `${box.x}%`,
             top: `${box.y}%`,

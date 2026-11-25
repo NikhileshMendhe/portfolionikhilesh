@@ -115,6 +115,7 @@ const CircularNavbar = ({ activeSection, onNavigate, sections }: CircularNavbarP
         window.removeEventListener('mouseup', handleMouseUp);
       };
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isDragging]);
 
   const handleNavClick = (sectionId: string) => {
@@ -132,12 +133,8 @@ const CircularNavbar = ({ activeSection, onNavigate, sections }: CircularNavbarP
     beam.style.transform = 'translateX(-50%)';
     beam.style.width = '4px';
     beam.style.height = '0';
-    beam.style.background = theme === 'dark' 
-      ? 'linear-gradient(180deg, #ef4444, transparent)'
-      : 'linear-gradient(180deg, #06b6d4, transparent)';
-    beam.style.boxShadow = theme === 'dark'
-      ? '0 0 20px #ef4444, 0 0 40px #ef4444'
-      : '0 0 20px #06b6d4, 0 0 40px #06b6d4';
+    beam.style.background = 'linear-gradient(180deg, #2563eb, transparent)';
+    beam.style.boxShadow = '0 0 20px #2563eb, 0 0 40px #2563eb';
     beam.style.zIndex = '9999';
     beam.style.pointerEvents = 'none';
     beam.style.transition = 'height 1s ease-out';
@@ -176,7 +173,7 @@ const CircularNavbar = ({ activeSection, onNavigate, sections }: CircularNavbarP
 
   if (!mounted) return null;
 
-  const glowColor = theme === 'dark' ? '#ef4444' : '#06b6d4';
+  const glowColor = theme === 'dark' ? '#3b82f6' : '#2563eb';
   const angleStep = 360 / sections.length;
 
   return (

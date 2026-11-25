@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import { personalInfo, marketingStrengths } from '@/data/marketingData';
 
 const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -7,7 +8,7 @@ const AboutSection = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     if (sectionRef.current) {
@@ -32,64 +33,31 @@ const AboutSection = () => {
             }`}
           >
             <h2 className="handwritten-bold text-4xl md:text-5xl mb-8 text-charcoal">
-              About the Developer
+              About Me & Growth Philosophy
             </h2>
             
             <div className="space-y-6 text-charcoal/80 relative z-10">
-              <p className="text-lg leading-relaxed">
-                Hey there! I'm a passionate full-stack developer who loves turning ideas into real, working web apps. 
-                I've spent the last few years exploring how design and functionality can come together to create smooth, 
-                memorable user experiences.
-              </p>
-              
-              <p className="text-lg leading-relaxed">
-                I enjoy building everything from interactive frontends with React and Tailwind CSS to solid backends 
-                with Node.js, Express, and MongoDB. I'm big on clean code, scalable architecture, and making things 
-                that actually feel good to use.
-              </p>
-              
-              <p className="text-lg leading-relaxed">
-                Whether it's crafting a chatbot that understands finance or developing a virtual gaming city, 
-                I love projects that challenge me to think differently and push the limits of what's possible.
-              </p>
+              {personalInfo.aboutBio.map((paragraph, index) => (
+                <p key={index} className="text-lg leading-relaxed">
+                  {paragraph}
+                </p>
+              ))}
               
               <div className="pt-6">
                 <h3 className="handwritten text-2xl mb-4 text-charcoal">What I'm Good At</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-neon.red rounded-full" />
-                      <span>Full Stack Web Development</span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {marketingStrengths.map((strength, idx) => (
+                    <div key={idx} className="flex items-center gap-2">
+                      <div className={`w-2 h-2 rounded-full ${idx % 2 === 0 ? 'bg-neon.red' : 'bg-accent'}`} />
+                      <span className="text-sm font-medium">{strength}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-accent rounded-full" />
-                      <span>Frontend Engineering (React.js, Tailwind CSS)</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-neon.red rounded-full" />
-                      <span>Backend Development (Node.js, Express.js, MongoDB)</span>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-accent rounded-full" />
-                      <span>RESTful APIs & Authentication</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-neon.red rounded-full" />
-                      <span>UI/UX Design Integration</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 bg-accent rounded-full" />
-                      <span>Problem Solving & Building Scalable Apps</span>
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
           </div>
           
-          {/* Dark side with stats/experience */}
+          {/* Dark side with marketing approach and stats */}
           <div 
             className={`transform transition-all duration-1000 delay-300 ${
               isVisible ? 'translate-x-0 opacity-100' : 'translate-x-20 opacity-0'
@@ -98,37 +66,52 @@ const AboutSection = () => {
             <div className="space-y-8">
               <div className="text-center">
                 <h3 className="handwritten text-3xl mb-8 neon-text">
-                  Creative Journey
+                  The 4 Pillars of Growth
                 </h3>
               </div>
               
               <div className="grid grid-cols-2 gap-6">
-                <div className="bg-card p-6 rounded-lg border border-border/50 hover:border-primary/50 transition-colors duration-300">
-                  <div className="text-3xl font-bold neon-text mb-2">50+</div>
-                  <div className="text-muted-foreground">Projects Completed</div>
+                <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-blue-100 hover:border-blue-400 shadow-md hover:shadow-xl transition-all duration-300">
+                  <div className="text-2xl font-bold neon-text mb-2">01. Research</div>
+                  <div className="text-sm text-muted-foreground">Competitor teardowns, audience pain points, & high-intent search gaps.</div>
                 </div>
                 
-                <div className="bg-card p-6 rounded-lg border border-border/50 hover:border-accent/50 transition-colors duration-300">
-                  <div className="text-3xl font-bold text-accent mb-2">8</div>
-                  <div className="text-muted-foreground">Years Experience</div>
+                <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-cyan-100 hover:border-cyan-400 shadow-md hover:shadow-xl transition-all duration-300">
+                  <div className="text-2xl font-bold text-accent mb-2">02. Creative</div>
+                  <div className="text-sm text-muted-foreground">Scroll-stopping UGC, hooks, direct response angles, & high-CTR copy.</div>
                 </div>
                 
-                <div className="bg-card p-6 rounded-lg border border-border/50 hover:border-primary/50 transition-colors duration-300">
-                  <div className="text-3xl font-bold neon-text mb-2">15+</div>
-                  <div className="text-muted-foreground">Game Titles</div>
+                <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-blue-100 hover:border-blue-400 shadow-md hover:shadow-xl transition-all duration-300">
+                  <div className="text-2xl font-bold neon-text mb-2">03. Funnel</div>
+                  <div className="text-sm text-muted-foreground">High-speed custom landing pages built for frictionless checkout and conversion.</div>
                 </div>
                 
-                <div className="bg-card p-6 rounded-lg border border-border/50 hover:border-accent/50 transition-colors duration-300">
-                  <div className="text-3xl font-bold text-accent mb-2">100+</div>
-                  <div className="text-muted-foreground">Character Designs</div>
+                <div className="bg-white/90 backdrop-blur-md p-6 rounded-2xl border border-cyan-100 hover:border-cyan-400 shadow-md hover:shadow-xl transition-all duration-300">
+                  <div className="text-2xl font-bold text-accent mb-2">04. Analytics</div>
+                  <div className="text-sm text-muted-foreground">Server-side CAPI, GA4 events, and attribution dashboards for clarity.</div>
                 </div>
               </div>
               
-              <div className="text-center pt-6">
-                <p className="text-muted-foreground italic">
-                  "Art is not what you see, but what you make others see."
+              {/* Marketing Edge Box */}
+              <div 
+                className="bg-gradient-to-br from-blue-50/70 via-white to-cyan-50/60 p-6 rounded-2xl border border-blue-200/80 shadow-md hover:shadow-lg transition-all duration-300 relative overflow-hidden"
+                data-placeholder="[Placeholder]"
+              >
+                {/* TODO: [Placeholder] Technical Edge highlight */}
+                <h4 className="text-lg font-bold neon-text mb-2 flex items-center gap-2">
+                  <span>⚡</span> The Engineering Advantage
+                </h4>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Most marketers wait weeks for developers to launch a landing page or configure a webhook. 
+                  Because I code, I deploy landing pages, fix conversion tracking discrepancies, and automate lead delivery in hours, not weeks.
                 </p>
-                <span className="text-sm text-primary handwritten">- Edgar Degas</span>
+              </div>
+
+              <div className="text-center pt-2">
+                <p className="text-muted-foreground italic">
+                  "Marketing is no longer about the stuff you make, but about the stories you tell and the data you track."
+                </p>
+                <span className="text-sm text-primary handwritten">- Growth Mindset</span>
               </div>
             </div>
           </div>

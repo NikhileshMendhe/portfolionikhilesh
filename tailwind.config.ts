@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import tailwindcssAnimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -54,6 +55,8 @@ export default {
           lines: "hsl(var(--notebook-lines))",
         },
         neon: {
+          blue: "hsl(var(--neon-blue))",
+          cyan: "hsl(var(--neon-cyan))",
           red: "hsl(var(--neon-red))",
           orange: "hsl(var(--neon-orange))",
         },
@@ -80,6 +83,8 @@ export default {
         'gradient-dark': 'var(--gradient-dark)',
       },
       boxShadow: {
+        'glow-blue': 'var(--glow-blue)',
+        'glow-cyan': 'var(--glow-cyan)',
         'glow-red': 'var(--glow-red)',
         'glow-orange': 'var(--glow-orange)',
         'notebook': 'var(--shadow-notebook)',
@@ -114,5 +119,5 @@ export default {
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [tailwindcssAnimate],
 } satisfies Config;

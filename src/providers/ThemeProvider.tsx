@@ -5,10 +5,10 @@ export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return (
     <NextThemesProvider
       attribute="class"
-      defaultTheme="dark"
+      defaultTheme="light"
       enableSystem={false}
       storageKey="portfolio-theme"
-      themes={["dark", "navy"]}
+      themes={["light", "dark", "navy"]}
       {...props}
     >
       {children}
