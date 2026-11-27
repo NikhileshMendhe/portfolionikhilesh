@@ -56,10 +56,9 @@ export const marketingStats: MarketingStat[] = [
   {
     id: "ad-spend",
     label: "Ad Spend Managed",
-    // TODO: [Placeholder] Replace with your real total ad spend managed
-    numericValue: 150000,
+    numericValue: 150,
     prefix: "$",
-    suffix: "+",
+    suffix: "K+",
     icon: "💰",
     isPlaceholder: true
   },

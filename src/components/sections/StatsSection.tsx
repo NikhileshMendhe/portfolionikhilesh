@@ -113,7 +113,7 @@ const StatsSection = () => {
                 {stat.icon}
               </div>
               
-              <div className="text-4xl md:text-5xl font-extrabold mb-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300">
+              <div className="text-3xl sm:text-3xl md:text-4xl lg:text-3xl xl:text-4xl font-extrabold mb-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-500 bg-clip-text text-transparent group-hover:scale-105 transition-transform duration-300 whitespace-nowrap overflow-hidden text-ellipsis">
                 {formatStatValue(stat)}
               </div>
               
