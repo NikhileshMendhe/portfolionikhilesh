@@ -14,7 +14,7 @@ const AchievementsSection = () => {
   };
 
   return (
-    <section id="achievements" className="py-20 bg-background relative overflow-hidden">
+    <section id="achievements" className="py-20 bg-transparent relative overflow-hidden">
       {/* Floating confetti particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {[...Array(20)].map((_, i) => (

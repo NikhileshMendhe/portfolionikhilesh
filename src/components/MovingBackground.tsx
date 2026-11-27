@@ -1,76 +1,311 @@
 import { useEffect, useState } from 'react';
-
-interface MovingBox {
-  id: number;
-  x: number;
-  y: number;
-  size: number;
-  speed: number;
-  direction: number;
-}
+import { useTheme } from 'next-themes';
 
 const MovingBackground = () => {
-  const [boxes, setBoxes] = useState<MovingBox[]>([]);
+  const { theme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 50, y: 30 });
 
   useEffect(() => {
-    // Generate initial boxes
-    const initialBoxes: MovingBox[] = Array.from({ length: 15 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: Math.random() * 40 + 20,
-      speed: Math.random() * 0.5 + 0.1,
-      direction: Math.random() * 360,
-    }));
-    setBoxes(initialBoxes);
-
-    // Animate boxes
-    const animateBoxes = () => {
-      setBoxes(prevBoxes =>
-        prevBoxes.map(box => {
-          let newX = box.x + Math.cos(box.direction) * box.speed;
-          let newY = box.y + Math.sin(box.direction) * box.speed;
-          let newDirection = box.direction;
-
-          // Bounce off edges
-          if (newX <= 0 || newX >= 100) {
-            newDirection = Math.PI - box.direction;
-            newX = Math.max(0, Math.min(100, newX));
-          }
-          if (newY <= 0 || newY >= 100) {
-            newDirection = -box.direction;
-            newY = Math.max(0, Math.min(100, newY));
-          }
-
-          return {
-            ...box,
-            x: newX,
-            y: newY,
-            direction: newDirection,
-          };
-        })
-      );
+    setMounted(true);
+    const handleMouseMove = (e: MouseEvent) => {
+      // Throttle mouse tracking to smooth percentage
+      const x = Math.round((e.clientX / window.innerWidth) * 100);
+      const y = Math.round((e.clientY / window.innerHeight) * 100);
+      setMousePos({ x, y });
     };
 
-    const interval = setInterval(animateBoxes, 50);
-    return () => clearInterval(interval);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  const isLight = !mounted || theme === 'light' || !theme;
+
   return (
-    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 w-full max-w-[100vw]">
-      {boxes.map(box => (
-        <div
-          key={box.id}
-          className="absolute border border-blue-500/15 bg-gradient-to-br from-blue-500/[0.03] to-cyan-500/[0.04] rounded-2xl shadow-sm transition-all duration-100 pointer-events-none"
-          style={{
-            left: `${box.x}%`,
-            top: `${box.y}%`,
-            width: `${box.size}px`,
-            height: `${box.size}px`,
-            transform: 'translate(-50%, -50%)',
-          }}
-        />
-      ))}
+    <div className="fixed inset-0 overflow-hidden pointer-events-none z-0 w-full max-w-[100vw] select-none">
+      {/* 1. Interactive Cursor Ambient Spotlight */}
+      <div
+        className="absolute inset-0 transition-opacity duration-700 pointer-events-none"
+        style={{
+          background: isLight
+            ? `radial-gradient(750px circle at ${mousePos.x}% ${mousePos.y}%, rgba(37, 99, 235, 0.07) 0%, rgba(6, 182, 212, 0.03) 45%, transparent 75%)`
+            : `radial-gradient(700px circle at ${mousePos.x}% ${mousePos.y}%, rgba(59, 130, 246, 0.12) 0%, rgba(6, 182, 212, 0.05) 50%, transparent 80%)`,
+        }}
+      />
+
+      {/* 2. Precision Blueprint Grid & Dot Matrix Layer (SVG) */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-80"
+        style={{
+          maskImage: 'radial-gradient(ellipse 90% 85% at 50% 35%, black 45%, transparent 95%)',
+          WebkitMaskImage: 'radial-gradient(ellipse 90% 85% at 50% 35%, black 45%, transparent 95%)',
+        }}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          {/* 60px x 60px Engineering Grid */}
+          <pattern id="prof-grid" width="60" height="60" patternUnits="userSpaceOnUse">
+            {/* Grid square border */}
+            <path
+              d="M 60 0 L 0 0 0 60"
+              fill="none"
+              stroke={isLight ? 'rgba(37, 99, 235, 0.045)' : 'rgba(147, 197, 253, 0.06)'}
+              strokeWidth="1"
+            />
+            {/* Micro Dot in center */}
+            <circle
+              cx="30"
+              cy="30"
+              r="1"
+              fill={isLight ? 'rgba(6, 182, 212, 0.18)' : 'rgba(6, 182, 212, 0.25)'}
+            />
+          </pattern>
+
+          {/* 180px Major Section with Crosshairs */}
+          <pattern id="prof-major-cross" width="180" height="180" patternUnits="userSpaceOnUse">
+            <path
+              d="M 90 84 L 90 96 M 84 90 L 96 90"
+              fill="none"
+              stroke={isLight ? 'rgba(37, 99, 235, 0.18)' : 'rgba(56, 189, 248, 0.25)'}
+              strokeWidth="1.2"
+            />
+            <circle
+              cx="90"
+              cy="90"
+              r="1.5"
+              fill={isLight ? 'rgba(37, 99, 235, 0.3)' : 'rgba(56, 189, 248, 0.4)'}
+            />
+          </pattern>
+
+          {/* Linear Gradient for Performance Curve */}
+          <linearGradient id="curve-gradient" x1="0%" y1="100%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#1d4ed8" stopOpacity={isLight ? '0.2' : '0.4'} />
+            <stop offset="50%" stopColor="#2563eb" stopOpacity={isLight ? '0.45' : '0.6'} />
+            <stop offset="100%" stopColor="#06b6d4" stopOpacity={isLight ? '0.7' : '0.9'} />
+          </linearGradient>
+
+          <linearGradient id="area-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#2563eb" stopOpacity={isLight ? '0.08' : '0.12'} />
+            <stop offset="100%" stopColor="#06b6d4" stopOpacity="0" />
+          </linearGradient>
+        </defs>
+
+        {/* Base Grid */}
+        <rect width="100%" height="100%" fill="url(#prof-grid)" />
+        {/* Major Crosshairs */}
+        <rect width="100%" height="100%" fill="url(#prof-major-cross)" />
+      </svg>
+
+      {/* 3. Luminous Multi-Layer Aurora & Ambient Mesh Orbs */}
+      {/* Orb 1: Top Right (Hero background) */}
+      <div
+        className="absolute -top-32 -right-32 w-[650px] h-[650px] rounded-full blur-[90px] animate-orb-1 pointer-events-none transition-all duration-1000"
+        style={{
+          background: isLight
+            ? 'radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, rgba(59, 130, 246, 0.04) 50%, transparent 75%)'
+            : 'radial-gradient(circle, rgba(37, 99, 235, 0.20) 0%, rgba(59, 130, 246, 0.08) 55%, transparent 75%)',
+        }}
+      />
+
+      {/* Orb 2: Top Left (Title accent) */}
+      <div
+        className="absolute top-1/4 -left-32 w-[550px] h-[550px] rounded-full blur-[85px] animate-orb-2 pointer-events-none transition-all duration-1000"
+        style={{
+          background: isLight
+            ? 'radial-gradient(circle, rgba(6, 182, 212, 0.10) 0%, rgba(14, 165, 233, 0.03) 50%, transparent 75%)'
+            : 'radial-gradient(circle, rgba(6, 182, 212, 0.18) 0%, rgba(14, 165, 233, 0.06) 55%, transparent 75%)',
+        }}
+      />
+
+      {/* Orb 3: Center Right (Case studies & proof) */}
+      <div
+        className="absolute top-1/2 -right-28 w-[620px] h-[620px] rounded-full blur-[95px] animate-orb-3 pointer-events-none transition-all duration-1000"
+        style={{
+          background: isLight
+            ? 'radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(59, 130, 246, 0.02) 50%, transparent 75%)'
+            : 'radial-gradient(circle, rgba(99, 102, 241, 0.16) 0%, rgba(59, 130, 246, 0.05) 55%, transparent 75%)',
+        }}
+      />
+
+      {/* Orb 4: Lower Left (Stats & Skills) */}
+      <div
+        className="absolute bottom-1/4 -left-20 w-[520px] h-[520px] rounded-full blur-[80px] animate-orb-1 pointer-events-none transition-all duration-1000"
+        style={{
+          background: isLight
+            ? 'radial-gradient(circle, rgba(14, 165, 233, 0.08) 0%, rgba(6, 182, 212, 0.02) 50%, transparent 75%)'
+            : 'radial-gradient(circle, rgba(14, 165, 233, 0.15) 0%, rgba(6, 182, 212, 0.05) 55%, transparent 75%)',
+        }}
+      />
+
+      {/* Orb 5: Bottom Center (Contact area) */}
+      <div
+        className="absolute -bottom-24 left-1/2 -translate-x-1/2 w-[720px] h-[450px] rounded-full blur-[100px] animate-orb-2 pointer-events-none transition-all duration-1000"
+        style={{
+          background: isLight
+            ? 'radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, rgba(6, 182, 212, 0.03) 60%, transparent 80%)'
+            : 'radial-gradient(circle, rgba(37, 99, 235, 0.16) 0%, rgba(6, 182, 212, 0.06) 60%, transparent 80%)',
+        }}
+      />
+
+      {/* 4. Performance Marketing Growth Curve (SVG vector etched into background) */}
+      <div className="absolute top-16 right-4 sm:right-12 lg:right-24 w-72 sm:w-96 lg:w-[480px] h-48 lg:h-64 pointer-events-none opacity-60 dark:opacity-40">
+        <svg viewBox="0 0 400 200" className="w-full h-full overflow-visible">
+          {/* Subtle horizontal grid lines */}
+          <line x1="0" y1="50" x2="400" y2="50" stroke={isLight ? 'rgba(37, 99, 235, 0.06)' : 'rgba(255, 255, 255, 0.05)'} strokeDasharray="3 3" />
+          <line x1="0" y1="100" x2="400" y2="100" stroke={isLight ? 'rgba(37, 99, 235, 0.06)' : 'rgba(255, 255, 255, 0.05)'} strokeDasharray="3 3" />
+          <line x1="0" y1="150" x2="400" y2="150" stroke={isLight ? 'rgba(37, 99, 235, 0.06)' : 'rgba(255, 255, 255, 0.05)'} strokeDasharray="3 3" />
+
+          {/* Area fill under curve */}
+          <path
+            d="M 10 180 Q 110 170, 190 125 T 320 60 T 390 20 L 390 190 L 10 190 Z"
+            fill="url(#area-gradient)"
+          />
+
+          {/* Exponential Growth Curve */}
+          <path
+            d="M 10 180 Q 110 170, 190 125 T 320 60 T 390 20"
+            fill="none"
+            stroke="url(#curve-gradient)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+          />
+
+          {/* Milestone Data Points */}
+          <g>
+            <circle cx="110" cy="170" r="4" fill="#2563eb" className="animate-pulse" />
+            <circle cx="110" cy="170" r="8" fill="none" stroke="#2563eb" strokeWidth="1" opacity="0.4" />
+          </g>
+          <g>
+            <circle cx="190" cy="125" r="4.5" fill="#2563eb" className="animate-pulse" />
+            <circle cx="190" cy="125" r="9" fill="none" stroke="#2563eb" strokeWidth="1" opacity="0.4" />
+          </g>
+          <g>
+            <circle cx="320" cy="60" r="5" fill="#06b6d4" className="animate-pulse" />
+            <circle cx="320" cy="60" r="10" fill="none" stroke="#06b6d4" strokeWidth="1" opacity="0.5" />
+          </g>
+          <g>
+            <circle cx="390" cy="20" r="5.5" fill="#06b6d4" />
+            <circle cx="390" cy="20" r="12" fill="none" stroke="#06b6d4" strokeWidth="1.5" className="animate-ping" opacity="0.4" />
+          </g>
+        </svg>
+      </div>
+
+      {/* 5. Audience Precision Targeting Radar (Mid-Left SVG Motif) */}
+      <div className="hidden md:block absolute top-[45%] left-4 lg:left-12 w-48 lg:w-56 h-48 lg:h-56 pointer-events-none opacity-40 dark:opacity-30">
+        <svg viewBox="0 0 200 200" className="w-full h-full animate-radar">
+          <circle cx="100" cy="100" r="30" fill="none" stroke={isLight ? 'rgba(37, 99, 235, 0.15)' : 'rgba(56, 189, 248, 0.2)'} strokeWidth="1" />
+          <circle cx="100" cy="100" r="60" fill="none" stroke={isLight ? 'rgba(37, 99, 235, 0.12)' : 'rgba(56, 189, 248, 0.15)'} strokeWidth="1" strokeDasharray="4 4" />
+          <circle cx="100" cy="100" r="90" fill="none" stroke={isLight ? 'rgba(6, 182, 212, 0.15)' : 'rgba(56, 189, 248, 0.2)'} strokeWidth="1" />
+          <line x1="10" y1="100" x2="190" y2="100" stroke={isLight ? 'rgba(37, 99, 235, 0.12)' : 'rgba(56, 189, 248, 0.15)'} strokeWidth="1" strokeDasharray="3 3" />
+          <line x1="100" y1="10" x2="100" y2="190" stroke={isLight ? 'rgba(37, 99, 235, 0.12)' : 'rgba(56, 189, 248, 0.15)'} strokeWidth="1" strokeDasharray="3 3" />
+          {/* Target Center Dot */}
+          <circle cx="100" cy="100" r="3" fill="#2563eb" />
+        </svg>
+      </div>
+
+      {/* 6. Floating Glassmorphic Marketing KPI Badges (Strategic Placement) */}
+      {/* Badge 1: Top Right */}
+      <div
+        className="hidden xl:flex absolute top-28 right-16 items-center gap-2 px-3.5 py-1.5 rounded-full backdrop-blur-md transition-all duration-300 pointer-events-none animate-float shadow-sm"
+        style={{
+          background: isLight ? 'rgba(255, 255, 255, 0.85)' : 'rgba(15, 23, 42, 0.75)',
+          border: isLight ? '1px solid rgba(37, 99, 235, 0.22)' : '1px solid rgba(59, 130, 246, 0.25)',
+          boxShadow: isLight ? '0 8px 24px -4px rgba(37, 99, 235, 0.12)' : '0 8px 24px -4px rgba(0, 0, 0, 0.4)',
+        }}
+      >
+        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+        <span className="text-xs font-semibold tracking-wide text-slate-700 dark:text-slate-200">
+          ROAS <span className="text-blue-600 dark:text-cyan-400 font-bold">+380%</span>
+        </span>
+      </div>
+
+      {/* Badge 2: Mid-Left (Skills & Strategy) */}
+      <div
+        className="hidden lg:flex absolute top-[36%] left-8 items-center gap-2 px-3.5 py-1.5 rounded-full backdrop-blur-md transition-all duration-300 pointer-events-none animate-float-slow shadow-sm"
+        style={{
+          background: isLight ? 'rgba(255, 255, 255, 0.85)' : 'rgba(15, 23, 42, 0.75)',
+          border: isLight ? '1px solid rgba(6, 182, 212, 0.25)' : '1px solid rgba(6, 182, 212, 0.25)',
+          boxShadow: isLight ? '0 8px 24px -4px rgba(6, 182, 212, 0.10)' : '0 8px 24px -4px rgba(0, 0, 0, 0.4)',
+        }}
+      >
+        <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+        <span className="text-xs font-semibold tracking-wide text-slate-700 dark:text-slate-200">
+          CPA Reduced <span className="text-emerald-600 dark:text-emerald-400 font-bold">-42%</span>
+        </span>
+      </div>
+
+      {/* Badge 3: Mid-Right (Case Studies) */}
+      <div
+        className="hidden lg:flex absolute top-[58%] right-10 items-center gap-2 px-3.5 py-1.5 rounded-full backdrop-blur-md transition-all duration-300 pointer-events-none animate-float shadow-sm"
+        style={{
+          background: isLight ? 'rgba(255, 255, 255, 0.85)' : 'rgba(15, 23, 42, 0.75)',
+          border: isLight ? '1px solid rgba(37, 99, 235, 0.22)' : '1px solid rgba(59, 130, 246, 0.25)',
+          boxShadow: isLight ? '0 8px 24px -4px rgba(37, 99, 235, 0.10)' : '0 8px 24px -4px rgba(0, 0, 0, 0.4)',
+        }}
+      >
+        <span className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" />
+        <span className="text-xs font-semibold tracking-wide text-slate-700 dark:text-slate-200">
+          Meta & Google Ads Scale
+        </span>
+      </div>
+
+      {/* Badge 4: Lower-Left (Experience / Results) */}
+      <div
+        className="hidden xl:flex absolute top-[74%] left-12 items-center gap-2 px-3.5 py-1.5 rounded-full backdrop-blur-md transition-all duration-300 pointer-events-none animate-float-slow shadow-sm"
+        style={{
+          background: isLight ? 'rgba(255, 255, 255, 0.85)' : 'rgba(15, 23, 42, 0.75)',
+          border: isLight ? '1px solid rgba(99, 102, 241, 0.22)' : '1px solid rgba(99, 102, 241, 0.25)',
+          boxShadow: isLight ? '0 8px 24px -4px rgba(99, 102, 241, 0.10)' : '0 8px 24px -4px rgba(0, 0, 0, 0.4)',
+        }}
+      >
+        <span className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+        <span className="text-xs font-semibold tracking-wide text-slate-700 dark:text-slate-200">
+          Conversion Rate <span className="text-blue-600 dark:text-cyan-400 font-bold">+4.2%</span>
+        </span>
+      </div>
+
+      {/* 7. Subtle Ambient Floating Glass Geometric Shapes */}
+      {/* Card 1 */}
+      <div
+        className="absolute top-[18%] left-[12%] w-24 h-24 rounded-2xl pointer-events-none animate-float-slow transition-all duration-700"
+        style={{
+          background: isLight
+            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(239, 246, 255, 0.4) 100%)'
+            : 'linear-gradient(135deg, rgba(30, 41, 59, 0.4) 0%, rgba(15, 23, 42, 0.2) 100%)',
+          border: isLight ? '1px solid rgba(37, 99, 235, 0.14)' : '1px solid rgba(59, 130, 246, 0.2)',
+          boxShadow: isLight ? '0 10px 30px -10px rgba(37, 99, 235, 0.08)' : 'none',
+          backdropFilter: 'blur(6px)',
+          transform: 'rotate(-8deg)',
+        }}
+      />
+
+      {/* Card 2 */}
+      <div
+        className="absolute top-[48%] right-[8%] w-28 h-28 rounded-3xl pointer-events-none animate-float transition-all duration-700"
+        style={{
+          background: isLight
+            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.5) 0%, rgba(240, 253, 250, 0.3) 100%)'
+            : 'linear-gradient(135deg, rgba(30, 41, 59, 0.3) 0%, rgba(15, 23, 42, 0.2) 100%)',
+          border: isLight ? '1px solid rgba(6, 182, 212, 0.16)' : '1px solid rgba(6, 182, 212, 0.2)',
+          boxShadow: isLight ? '0 10px 30px -10px rgba(6, 182, 212, 0.08)' : 'none',
+          backdropFilter: 'blur(6px)',
+          transform: 'rotate(12deg)',
+        }}
+      />
+
+      {/* Card 3 */}
+      <div
+        className="absolute top-[82%] right-[18%] w-20 h-20 rounded-2xl pointer-events-none animate-float-slow transition-all duration-700"
+        style={{
+          background: isLight
+            ? 'linear-gradient(135deg, rgba(255, 255, 255, 0.6) 0%, rgba(238, 242, 255, 0.4) 100%)'
+            : 'linear-gradient(135deg, rgba(30, 41, 59, 0.3) 0%, rgba(15, 23, 42, 0.2) 100%)',
+          border: isLight ? '1px solid rgba(99, 102, 241, 0.14)' : '1px solid rgba(99, 102, 241, 0.2)',
+          boxShadow: isLight ? '0 10px 30px -10px rgba(99, 102, 241, 0.08)' : 'none',
+          backdropFilter: 'blur(6px)',
+          transform: 'rotate(-6deg)',
+        }}
+      />
     </div>
   );
 };

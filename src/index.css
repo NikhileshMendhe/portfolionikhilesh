@@ -540,6 +540,58 @@
   }
 
   .animate-float {
-    animation: float 3s ease-in-out infinite;
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @keyframes orb-drift-1 {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(35px, -45px, 0) scale(1.08);
+    }
+  }
+
+  @keyframes orb-drift-2 {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(-40px, 35px, 0) scale(1.05);
+    }
+  }
+
+  @keyframes orb-drift-3 {
+    0%, 100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      transform: translate3d(25px, 40px, 0) scale(1.1);
+    }
+  }
+
+  @keyframes radar-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .animate-orb-1 {
+    animation: orb-drift-1 18s ease-in-out infinite;
+  }
+
+  .animate-orb-2 {
+    animation: orb-drift-2 22s ease-in-out infinite;
+  }
+
+  .animate-orb-3 {
+    animation: orb-drift-3 26s ease-in-out infinite;
+  }
+
+  .animate-radar {
+    animation: radar-spin 35s linear infinite;
   }
 }

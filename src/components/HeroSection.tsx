@@ -12,9 +12,9 @@ const HeroSection = () => {
   if (!mounted) return null;
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-24 bg-[radial-gradient(ellipse_80%_80%_at_50%_-15%,rgba(37,99,235,0.12),rgba(255,255,255,0))]">
-      {/* Subtle Gradient Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/90 via-background/95 to-background pointer-events-none" />
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-24 bg-transparent">
+      {/* Soft Ambient Light Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-500/[0.03] via-transparent to-transparent pointer-events-none" />
       
       {/* Main content container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
