@@ -1,18 +1,12 @@
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { useTheme } from 'next-themes';
 import { personalInfo } from '@/data/marketingData';
 
 const HeroSection = () => {
-  const [scrollY, setScrollY] = useState(0);
-  const { theme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   if (!mounted) return null;
@@ -84,16 +78,6 @@ const HeroSection = () => {
                 <div className="absolute inset-0 rounded-2xl border-2 border-primary/30 group-hover:border-primary/60 transition-all duration-500" />
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      
-      {/* Scroll indicator */}
-      <div className="absolute bottom-6 lg:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce hidden sm:block">
-        <div className="flex flex-col items-center text-primary/70">
-          <span className="text-xs lg:text-sm mb-2 handwritten">Scroll to explore</span>
-          <div className="w-5 lg:w-6 h-8 lg:h-10 border-2 border-primary/50 rounded-full flex justify-center">
-            <div className="w-0.5 lg:w-1 h-2 lg:h-3 bg-primary rounded-full mt-1.5 lg:mt-2 animate-pulse" />
           </div>
         </div>
       </div>
